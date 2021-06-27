@@ -21,7 +21,6 @@ const Register = ({ history, loading, registerError, registerUserAction }) => {
   const [lastName] = useState("");
   const [jobTitle] = useState("");
   const [phoneNumber] = useState("");
-  const [emailPreference] = useState("");
   const [companyName] = useState("");
   const [country] = useState("");
   const [role] = useState("customer");
@@ -47,7 +46,6 @@ const Register = ({ history, loading, registerError, registerUserAction }) => {
     firstName,
     lastName,
     email,
-    emailPreference,
     confirmPassword,
     password,
     companyName,
@@ -80,9 +78,6 @@ const Register = ({ history, loading, registerError, registerUserAction }) => {
                 email: Yup.string()
                   .email("Email is invalid")
                   .required("Email is required"),
-                emailPreference: Yup.string()
-                  .email("Email Preference is invalid")
-                  .required("Email Preference is required"),
                 password: Yup.string()
                   .min(6, "Password must be at least 6 characters")
                   .required("Password is required"),
