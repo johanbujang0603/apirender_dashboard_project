@@ -11,9 +11,10 @@ import {
   Input,
   Badge,
 } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams, useHistory } from "react-router-dom";
 import { Colxx } from "../../components/common/CustomBootstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import axios from 'axios';
 import IntlMessages from "../../helpers/IntlMessages";
 
 import { options } from "../../constants/projectValues";
@@ -22,6 +23,8 @@ import SelectionOption from "../../components/services/SelectionOption";
 import MultipleSelectOption from "../../components/services/MultipleSelectOption";
 
 const ServiceWidget = ({ item, index, addToCartAction, currentItems }) => {
+  const params = useParams();
+  const history = useHistory();
   const [serviceModal, setSerivceModal] = useState(false);
   const [serviceQty, setServiceQty] = useState(0);
   const [orderItems, setOrderItems] = useState([]);
@@ -125,7 +128,29 @@ const ServiceWidget = ({ item, index, addToCartAction, currentItems }) => {
   };
 
   const addItemsToCart = (e) => {
-    addToCartAction(orderItems, index);
+    if (item.is_free === true) {
+      let qty = 0;
+      orderItems.map((item) => {
+        qty += item.quantity
+      });
+      const formData = {
+        is_paid: true,
+        name: item.name,
+        value: item.value,
+        orders: JSON.stringify(orderItems),
+        total_price: 0,
+        quantity: qty,
+        project: params.id,
+        status: "WAITING FOR FILES"
+      }
+      axios.post("/api/services/add-free-service", formData)
+        .then((res) => {
+          if (res.data.success === true) {
+            history.push(`/app/projects/details/${params.id}`);
+          }
+        })
+    }
+    else addToCartAction(orderItems, index);
     setSerivceModal(false);
   };
 

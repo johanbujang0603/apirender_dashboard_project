@@ -43,6 +43,19 @@ router.post("/add", async (req, res) => {
   }
 });
 
+router.post("/add-free-service", async (req, res) => {
+  const formData = req.body;
+  const newService = new Service({
+    ...formData
+  });
+  await newService.save();
+  await Project.updateOne(
+    { _id: formData.project },
+    { $set: { total_amount: 0, status: "WAITING FOR FILES" } }
+  );
+  return res.json({ success: true });
+})
+
 router.get("/order-list", async (req, res) => {
   Payment.find()
     .populate("service_id")
