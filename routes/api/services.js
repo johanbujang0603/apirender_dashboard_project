@@ -51,7 +51,7 @@ router.post("/add-free-service", async (req, res) => {
   await newService.save();
   await Project.updateOne(
     { _id: formData.project },
-    { $set: { total_amount: 0, status: "WAITING FOR FILES" } }
+    { $set: { total_amount: 0, status: "REQUEST QUOTE" } }
   );
   return res.json({ success: true });
 })

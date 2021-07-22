@@ -12,15 +12,16 @@ const FileSchema = new Schema({
   },
   key_name: {
     type: String,
-    required: true,
   },
   original_name: {
     type: String,
     required: true,
   },
+  temp_path: {
+    type: String
+  },
   path: {
-    type: String,
-    required: true
+    type: String
   },
   file_size: {
     type: Number,
@@ -32,6 +33,12 @@ const FileSchema = new Schema({
   },
   owner_id: {
     type: Schema.Types.ObjectId,
+  },
+  is_uploaded: {
+    type: Boolean,
+  },
+  progress: {
+    type: Number,
   },
   date: {
     type: Date,

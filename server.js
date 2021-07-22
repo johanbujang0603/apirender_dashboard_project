@@ -3,8 +3,23 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const cron = require("node-cron");
+const AWS = require('aws-sdk');
+const fs = require('fs');
+
+let cron_running = false;
 
 require('dotenv').config();
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+
+// Models
+const File = require("./models/File");
+
+// Routes
 
 const users = require("./routes/api/users");
 const projects = require("./routes/api/projects");
@@ -64,3 +79,50 @@ app.use("/api/actions", actions);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+cron.schedule("*/5 * * * * *", async () => {
+  const files = await File.find({ is_uploaded: false });
+  if (cron_running === false && files.length > 0) {
+    let uploaded_cnt = 0;
+    cron_running = true;
+    console.log("Cronjob is running", files.length);
+    for (let i = 0 ; i < files.length; i ++) {
+      const fileContent = fs.readFileSync(__dirname + files[i].temp_path);
+      const params = {
+        Bucket: 'apirender-dashboard-bucket-2020-sep',
+        Key: files[i].key_name,
+        Body: fileContent
+      }
+      s3.upload(params, function (err, data) {
+        if (err) {
+          console.log(err);
+          cron_running = false;
+        }
+        File.updateOne({ _id: files[i]._id }, {
+          $set: {
+            is_uploaded: true,
+            progress: 100,
+            path: data.Location,
+            temp_path: "",
+          }
+        }, function (err, doc) {
+          uploaded_cnt ++;
+          if (uploaded_cnt >= files.length)
+            cron_running = false;
+          fs.unlinkSync(__dirname + files[i].temp_path);
+          console.log("uploaded!");
+        });
+      }).on('httpUploadProgress', async function(progress) {
+        let progressPercentage = Math.round(progress.loaded / progress.total * 100);
+        File.updateOne({ _id: files[i]._id }, {
+          $set: {
+            is_uploaded: false,
+            progress: parseInt(progressPercentage),
+          }
+        }, function (err, doc) {
+          if (err) console.log(err);
+          console.log('uploading....');
+        });
+      });
+    }
+  }
+});

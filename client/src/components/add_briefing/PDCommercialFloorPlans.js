@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { injectIntl } from "react-intl";
 import {
@@ -10,7 +10,8 @@ import {
   Form,
   Input,
   CardBody,
-  CustomInput
+  CustomInput,
+Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
@@ -25,8 +26,22 @@ const initialFormData = {
 
 const PDCommercialFloorPlans = ({ service, history }) => {
   const dropzone = useRef();
+  
+  let intervalId = useRef(null)
+
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [s3UploadPorgress, setS3UploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);
+
+  useEffect(() => {
+    if (uploadProgress + s3UploadPorgress === 200) {
+      console.log("completed");
+      setLoading(false);
+      clearInterval(intervalId.current)
+      history.push(`/thank-you/briefing/${service._id}`);
+    }
+  }, [uploadProgress, s3UploadPorgress])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,6 +73,13 @@ const PDCommercialFloorPlans = ({ service, history }) => {
         NotificationManager.warning("Something went wrong. Please try again", "Error", 3000);
       });
   };
+
+  const getFileStatus = () => {
+    axios.get(`/api/briefing/file-status?service_id=${service._id}`)
+      .then((res) => {
+        setS3UploadProgress(res.data.progress);
+      })
+  }
 
   const handleChange = (e) => {
     updateFormData({
@@ -145,16 +167,20 @@ const PDCommercialFloorPlans = ({ service, history }) => {
                     className={`btn-shadow btn-multiple-state ${
                       loading ? "show-spinner" : ""
                     }`}
+                    disabled={loading}
                     size="lg"
                   >
-                    <span className="spinner d-inline-block">
-                      <span className="bounce1" />
-                      <span className="bounce2" />
-                      <span className="bounce3" />
-                    </span>
-                    <span className="label">
-                      <IntlMessages id="briefing.submit" />
-                    </span>
+                    <span>{loading && (
+                      <>
+                      <Spinner style={{width: '1rem', height: '1rem', marginRight: '10px'}} />
+                      {parseInt((uploadProgress + s3UploadPorgress) / 2)} %
+                      </>
+                    )}</span>
+                    {!loading && (
+                      <span className="label">
+                        <IntlMessages id="briefing.submit" />
+                      </span>
+                    )}
                   </Button>
                 </FormGroup>
               </Form>

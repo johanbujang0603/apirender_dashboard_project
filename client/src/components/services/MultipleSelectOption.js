@@ -69,10 +69,14 @@ const MultipleSelectOption = ({
                 </Label>
               </FormGroup>
               <div className="option-quantity-input">
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-                  <Input value={option.price === 0 ? 'Free' : option.price} readOnly/>
-                </InputGroup>
+                {
+                  option.price > 0 && (
+                    <InputGroup>
+                      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+                      <Input value={option.price} readOnly />
+                    </InputGroup>
+                  )
+                }
               </div>
             </div>
           </Card>

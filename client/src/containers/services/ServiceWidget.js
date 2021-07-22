@@ -141,7 +141,7 @@ const ServiceWidget = ({ item, index, addToCartAction, currentItems }) => {
         total_price: 0,
         quantity: qty,
         project: params.id,
-        status: "WAITING FOR FILES"
+        status: "REQUEST QUOTE"
       }
       axios.post("/api/services/add-free-service", formData)
         .then((res) => {
@@ -349,7 +349,7 @@ const ServiceWidget = ({ item, index, addToCartAction, currentItems }) => {
                     className="float-right"
                     onClick={(e) => addItemsToCart(e)}
                   >
-                    { item.is_free === true ? "Submit Quote Request" : <IntlMessages id="projects.add-to-cart" /> }
+                    { item.is_free === true ? "Proceed to Quote Request" : <IntlMessages id="projects.add-to-cart" /> }
                     
                   </Button>{" "}
                 </div>

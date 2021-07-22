@@ -3,9 +3,16 @@ import { Row, Card, CardTitle, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { Colxx } from '../components/common/CustomBootstrap';
 import IntlMessages from '../helpers/IntlMessages';
+import queryString from 'query-string';
 
 const Thankyou = ({match}) => {
   const [action, setAction] = useState(null);
+  
+  const queryParams = new URLSearchParams(window.location.search);
+  const isQuote = queryParams.get("quote");
+  // const params = queryString.parse(this.props.location.search)
+
+  // console.log(params);
   useEffect(() => {
     setAction(match.params.action);
     document.body.classList.add('background');
@@ -41,7 +48,16 @@ const Thankyou = ({match}) => {
                       )
                     }
                     {
-                      action && action==='briefing' && ( 
+                      action && action === 'briefing' && isQuote === 'true' && ( 
+                        <>
+                          <p className="">Thank you for submitting your quote request.</p>
+                          <p className="">One of our team members will be in touch shortly to discuss your project and provide a quote.</p>
+                          <p className="">If you have any questions in the meantime, please contact your account manager via the dashboard.</p>
+                        </> 
+                      )
+                    }
+                    {
+                      action && action === 'briefing' && isQuote !== 'true' && ( 
                         <>
                           <p className="">Thank you, the project brief has been submitted successsfully.</p>
                           <p className="">Your order is now in progress. </p>

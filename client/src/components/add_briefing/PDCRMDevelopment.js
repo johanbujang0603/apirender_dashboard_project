@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { injectIntl } from "react-intl";
 import {
@@ -10,7 +10,8 @@ import {
   Form,
   Input,
   CardBody,
-  CustomInput
+  CustomInput,
+  Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
@@ -18,15 +19,28 @@ import FileDropzone from "../common/FileDropzone";
 import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
-  projectAddress: null,
   contactMethod: null,
   additionalInformation: null
 };
 
 const PDCRMDevelopment = ({ service, history }) => {
   const dropzone = useRef();
+  let intervalId = useRef(null)
+
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [s3UploadPorgress, setS3UploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);
+
+  useEffect(() => {
+    if (uploadProgress + s3UploadPorgress === 200) {
+      console.log("completed");
+      setLoading(false);
+      clearInterval(intervalId.current)
+      history.push(`/thank-you/briefing/${service._id}?quote=true`);
+    }
+  }, [uploadProgress, s3UploadPorgress])
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,20 +58,33 @@ const PDCRMDevelopment = ({ service, history }) => {
       headers: {
         "content-type": "multipart/form-data",
       },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
     };
-
+    
     axios
       .post(`/api/briefing/save`, postFormData, config)
       .then((res) => {
-        setLoading(false);
-        history.push(`/thank-you/briefing/${service._id}`);
+        intervalId.current = setInterval(() => {
+          getFileStatus();
+        }, 2000)
       })
       .catch((err) => {
         console.log(err.response.data);
-        setLoading(false);
         NotificationManager.warning("Something went wrong. Please try again", "Error", 3000);
       });
   };
+
+  const getFileStatus = () => {
+    axios.get(`/api/briefing/file-status?service_id=${service._id}`)
+      .then((res) => {
+        setS3UploadProgress(res.data.progress);
+      })
+  }
 
   const handleChange = (e) => {
     updateFormData({
@@ -78,22 +105,10 @@ const PDCRMDevelopment = ({ service, history }) => {
                   <Label className="font-weight-bold">
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
-                  <p className="text-muted">To achieve the best results and most accurate floor plan render we require the architectural drawings in either PDF or CAD file. At a minimum we require the floor plan blueprints for your project. Please ensure the blueprints have the property measurements on them.</p>
+                  <p className="text-muted">
+                    To assist with us preparing a quote, please upload any relevant files (i.e, information on your company, projects, etc.)
+                  </p>
                   <FileDropzone ref={dropzone} />
-                </FormGroup>
-                
-                <FormGroup>
-                  <Label className="font-weight-bold">
-                    Project Address
-                  </Label>
-                  <p className="text-muted text-small">Please enter the full project address here.</p>
-                  <Input
-                    type="text"
-                    placeholder=""
-                    name="projectAddress"
-                    id="projectAddress"
-                    onChange={handleChange}
-                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">
@@ -146,16 +161,20 @@ const PDCRMDevelopment = ({ service, history }) => {
                     className={`btn-shadow btn-multiple-state ${
                       loading ? "show-spinner" : ""
                     }`}
+                    disabled={loading}
                     size="lg"
                   >
-                    <span className="spinner d-inline-block">
-                      <span className="bounce1" />
-                      <span className="bounce2" />
-                      <span className="bounce3" />
-                    </span>
-                    <span className="label">
-                      <IntlMessages id="briefing.submit" />
-                    </span>
+                    <span>{loading && (
+                      <>
+                      <Spinner style={{width: '1rem', height: '1rem', marginRight: '10px'}} />
+                      {parseInt((uploadProgress + s3UploadPorgress) / 2)} %
+                      </>
+                    )}</span>
+                    {!loading && (
+                      <span className="label">
+                        <IntlMessages id="briefing.submit" />
+                      </span>
+                    )}
                   </Button>
                 </FormGroup>
               </Form>

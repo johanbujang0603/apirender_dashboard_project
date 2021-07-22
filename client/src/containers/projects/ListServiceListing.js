@@ -22,6 +22,7 @@ const ListServiceListing = ({
     return options.reduce((a, b) => a + (b["quantity"] || 0), 0);
   };
 
+
   return (
     <Row>
       <Colxx xxs="12" className="mb-3">
@@ -71,7 +72,13 @@ const ListServiceListing = ({
                     role="cell"
                     className="align-middle list-item-heading w-10"
                   >
-                    ${product.total_price}
+                    {
+                      product.total_price > 0 ? (
+                        '$' + product.total_price
+                      ) : (
+                        ''
+                      )
+                    }
                   </td>
                   <td
                     role="cell"
@@ -100,6 +107,16 @@ const ListServiceListing = ({
                           className="top-right-button btn btn-primary btn-sm"
                         >
                           <IntlMessages id="projects.send-files" />
+                        </NavLink>
+                      )}
+                    {product.is_paid === true &&
+                      product.status === "REQUEST QUOTE" && (
+                        <NavLink
+                          exact={true}
+                          to={`/app/projects/briefing/${product._id}`}
+                          className="top-right-button btn btn-primary btn-sm"
+                        >
+                          Proceed to Quote Request
                         </NavLink>
                       )}
                     {product.is_paid &&

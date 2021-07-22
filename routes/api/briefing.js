@@ -21,10 +21,11 @@ const s3 = new AWS.S3({
 });
 
 router.post("/save", async (req, res) => {
-  const form = new formidable.IncomingForm();
+  const form = new formidable.IncomingForm({ maxFileSize: 4096 * 1024 * 1024 });
   let reqBody = null;
   let files = [];
   form.parse(req, function (err, fields, files) {
+    if (err) console.log(err);
     reqBody = fields;
   });
   
@@ -38,62 +39,32 @@ router.post("/save", async (req, res) => {
     });
   });
 
-  form.on("file", function (name, file) {
-
-  });
+  form.on("file", function (name, file) {});
 
   form.on("end", async () => {
     let reqData = [];
     for (let i = 0 ; i < files.length ; i ++) {
-      const fileContent = fs.readFileSync(files[i].path);
       const fileSize = fs.statSync(files[i].path).size;
       const rawBytes = await crypto.pseudoRandomBytes(16);
       const fileName = rawBytes.toString('hex') + Date.now() + path.extname(files[i].name);
       reqData.push({
+        service_id: reqBody.serviceId,
         service_option: files[i].name,
         original_name: files[i].file_name,
         key_name: fileName,
         file_size: fileSize,
-        extension: path.extname(files[i].name),
-        param: {
-          Bucket: 'apirender-dashboard-bucket-2020-sep',
-          Key: fileName,
-          Body: fileContent
-        }
+        extension: path.extname(files[i].file_name),
+        temp_path: `/uploads/temp/${files[i].file_name}`,
+        is_uploaded: false,
+        progress: 0,
       });
-      fs.unlinkSync(files[i].path);
     }
 
-    let { serviceId, content } = reqBody;
-
-    const s3Responses = await Promise.all(
-      reqData.map(async data => {
-        return {
-          service_option: data.service_option,
-          original_name: data.original_name,
-          key_name: data.key_name,
-          file_size: data.file_size,
-          extension: data.extension,
-          data: await s3.upload(data.param).promise()
-        }
-      })
-    );
-    
-    for (let i = 0 ; i < s3Responses.length; i ++) {
-      const newFile = new File({
-        service_id: serviceId,
-        service_option: s3Responses[i].service_option,
-        original_name: s3Responses[i].original_name,
-        key_name: s3Responses[i].key_name,
-        path: s3Responses[i].data.Location,
-        file_size: s3Responses[i].file_size,
-        extension: s3Responses[i].extension
-      });
-      await newFile.save();
-    }
+    await File.insertMany(reqData);
 
     try {
       let briefingObj = new Object();
+      let { serviceId, content } = reqBody;
       content = JSON.parse(content);
       Object.keys(content).map(function (key, index) {
         briefingObj[key] = content[key];
@@ -118,6 +89,17 @@ router.post("/save", async (req, res) => {
     }
   });
 });
+
+router.get("/file-status", async (req, res) => {
+  const serviceId = req.query.service_id;
+  File.find({ service_id: serviceId }, function (err, docs) {
+    let totalProgress = 0;
+    docs.map((d) => {
+      totalProgress += d.progress;
+    });
+    return res.json({ progress: docs.length > 0 ? parseFloat(totalProgress/docs.length) : 100 })
+  })
+})
 
 
 router.post("/get-briefing", async (req, res) => {

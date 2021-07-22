@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { injectIntl } from "react-intl";
 import {
@@ -10,7 +10,8 @@ import {
   Form,
   Input,
   CardBody,
-  CustomInput
+  CustomInput,
+Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
@@ -19,18 +20,27 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   propertyAddress: null,
-  roomType: null,
-  perspective: null,
-  height: null,
-  moodTimeOfDay: null,
   contactMethod: null,
   additionalInformation: null
 };
 
 const PDPremiumRenders = ({ service, history }) => {
   const dropzone = useRef();
+  let intervalId = useRef(null)
+
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [s3UploadPorgress, setS3UploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);
+
+  useEffect(() => {
+    if (uploadProgress + s3UploadPorgress === 200) {
+      console.log("completed");
+      setLoading(false);
+      clearInterval(intervalId.current)
+      history.push(`/thank-you/briefing/${service._id}?quote=true`);
+    }
+  }, [uploadProgress, s3UploadPorgress])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,20 +58,33 @@ const PDPremiumRenders = ({ service, history }) => {
       headers: {
         "content-type": "multipart/form-data",
       },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
     };
-
+    
     axios
       .post(`/api/briefing/save`, postFormData, config)
       .then((res) => {
-        setLoading(false);
-        history.push(`/thank-you/briefing/${service._id}`);
+        intervalId.current = setInterval(() => {
+          getFileStatus();
+        }, 2000)
       })
       .catch((err) => {
         console.log(err.response.data);
-        setLoading(false);
         NotificationManager.warning("Something went wrong. Please try again", "Error", 3000);
       });
   };
+
+  const getFileStatus = () => {
+    axios.get(`/api/briefing/file-status?service_id=${service._id}`)
+      .then((res) => {
+        setS3UploadProgress(res.data.progress);
+      })
+  }
 
   const handleChange = (e) => {
     updateFormData({
@@ -103,118 +126,8 @@ const PDPremiumRenders = ({ service, history }) => {
                     onChange={handleChange}
                   />
                 </FormGroup>
-                <FormGroup row>
-                  <Colxx md='4'>
-                    <Label className="font-weight-bold">
-                      Select Room Type or Space (Interiors)
-                    </Label>
-                    <p className="static-height"></p>
-                    <Input
-                      type="select"
-                      onChange={handleChange}
-                      defaultValue=""
-                      name={`roomType`}
-                      id={`roomType`}
-                    >
-                      <option value="" disabled></option>
-                      <option value="Master Bedroom">
-                        Master Bedroom
-                      </option>
-                      <option value="Bedroom">Bedroom</option>
-                      <option value="Bathroom">Bathroom</option>
-                      <option value="Ensuite">Ensuite</option>
-                      <option value="Living Room">Living Room</option>
-                      <option value="Dining Room">Dining Room</option>
-                      <option value="Open-Plan Living/Dining Room">
-                        Open-Plan Living/Dining Room
-                      </option>
-                      <option value="Kitchen">Kitchen</option>
-                      <option value="Children's Room">
-                        Children's Room
-                      </option>
-                      <option value="Home Office">Home Office</option>
-                      <option value="Entry">Entry</option>
-                      <option value="Hallway">Hallway</option>
-                      <option value="Home Bar">Home Bar</option>
-                      <option value="Laundry">Laundry</option>
-                      <option value="Staircase">Staircase</option>
-                      <option value="Other">Other</option>
-                    </Input>
-                  </Colxx>
-                  <Colxx md='4'>
-                    <Label className="font-weight-bold">
-                      <IntlMessages id="briefing.perspective" />
-                    </Label>
-                    <p className="text-small text-muted static-height">
-                      <IntlMessages id="briefing.perspective-description" />
-                    </p>
-                    <Input
-                      type="select"
-                      onChange={handleChange}
-                      defaultValue=""
-                      name="perspective"
-                      id="perspective"
-                    >
-                      <option value="" disabled></option>
-                      <option value="Front Center">Front Center</option>
-                      <option value="Front Left">Front Left</option>
-                      <option value="Front Right">Front Right</option>
-                      <option value="Rear Center">Rear Center</option>
-                      <option value="Rear Left">Rear Left</option>
-                      <option value="Rear Right">Rear Right</option>
-                    </Input>
-                  </Colxx>
-                  <Colxx md="4">
-                    <Label className="font-weight-bold">
-                      <IntlMessages id="briefing.height" />
-                    </Label>
-                    <p className="text-small text-muted static-height">
-                      <IntlMessages id="briefing.height-description" />
-                    </p>
-                    <Input
-                      type="select"
-                      onChange={handleChange}
-                      defaultValue=""
-                      name="height"
-                      id="height"
-                    >
-                      <option value="" disabled></option>
-                      <option value="Ground Level">Ground Level</option>
-                      <option value="Elevated 3-4 meters">
-                        Elevated 3-4 meters
-                      </option>
-                      <option value="Other - Include notes in Brief Submission Section">
-                        Other - Include notes in Brief Submission Section
-                      </option>
-                    </Input>
-                  </Colxx>
-                </FormGroup>
 
                 <FormGroup row>
-                  <Colxx md="6">
-                    <Label className="font-weight-bold">
-                      <IntlMessages id="briefing.select-mood-time-of-day" />
-                    </Label>
-                    <p className="static-height"></p>
-                    <Input
-                      type="select"
-                      onChange={handleChange}
-                      defaultValue=""
-                      name="moodTimeOfDay"
-                      id="moodTimeOfDay"
-                    >
-                      <option value="" disabled></option>
-                      <option value="Bright & Airy (Day Time)">
-                        Bright & Airy (Day Time)
-                      </option>
-                      <option value="Soft & Soothing (Twlight)">
-                        Soft & Soothing (Twlight)
-                      </option>
-                      <option value="Smooth & Seductive (Night Time)">
-                        Smooth & Seductive (Night Time)
-                      </option>
-                    </Input>
-                  </Colxx>
                   <Colxx md='6'>
                     <Label className="font-weight-bold">
                       How would you like to be contacted?
@@ -267,16 +180,20 @@ const PDPremiumRenders = ({ service, history }) => {
                     className={`btn-shadow btn-multiple-state ${
                       loading ? "show-spinner" : ""
                     }`}
+                    disabled={loading}
                     size="lg"
                   >
-                    <span className="spinner d-inline-block">
-                      <span className="bounce1" />
-                      <span className="bounce2" />
-                      <span className="bounce3" />
-                    </span>
-                    <span className="label">
-                      <IntlMessages id="briefing.submit" />
-                    </span>
+                    <span>{loading && (
+                      <>
+                      <Spinner style={{width: '1rem', height: '1rem', marginRight: '10px'}} />
+                      {parseInt((uploadProgress + s3UploadPorgress) / 2)} %
+                      </>
+                    )}</span>
+                    {!loading && (
+                      <span className="label">
+                        <IntlMessages id="briefing.submit" />
+                      </span>
+                    )}
                   </Button>
                 </FormGroup>
               </Form>

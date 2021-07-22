@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { injectIntl } from "react-intl";
 import {
@@ -10,7 +10,8 @@ import {
   Form,
   Input,
   CustomInput,
-  CardBody,
+CardBody,
+  Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import FileDropzone from "../common/FileDropzone";
@@ -33,9 +34,21 @@ const initialFormData = {
 const PD3DExteriorRenders = ({ service, orders, history }) => {
   const dropzone = useRef();
   const referenceDropzone = useRef();
+  let intervalId = useRef(null)
 
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [s3UploadPorgress, setS3UploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);
+
+  useEffect(() => {
+    if (uploadProgress + s3UploadPorgress === 200) {
+      console.log("completed");
+      setLoading(false);
+      clearInterval(intervalId.current)
+      history.push(`/thank-you/briefing/${service._id}`);
+    }
+  }, [uploadProgress, s3UploadPorgress])
 
 
   const handleSubmit = (event) => {
@@ -44,38 +57,45 @@ const PD3DExteriorRenders = ({ service, orders, history }) => {
 
     const files = dropzone.current.myDropzone.files;
     const referenceImages = referenceDropzone.current.myDropzone.files;
-    const uploadFormData = new FormData();
+    const postFormData = new FormData();
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
-      }
+        "content-type": "multipart/form-data",
+      },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
     };
 
-    files.map((file) => uploadFormData.append("basic", file));
-    referenceImages.map((file) => uploadFormData.append("REFERENCE_IMAGES", file));
+    files.map((file) => postFormData.append("basic", file));
+    referenceImages.map((file) => postFormData.append("REFERENCE_IMAGES", file));
     
-    uploadFormData.append("serviceId", service._id);
-    uploadFormData.append("content", JSON.stringify(formData));
+    postFormData.append("serviceId", service._id);
+    postFormData.append("content", JSON.stringify(formData));
 
+    
     axios
-      .post(`/api/briefing/save`, uploadFormData, config)
+      .post(`/api/briefing/save`, postFormData, config)
       .then((res) => {
-        setLoading(false);
-        history.push(`/thank-you/briefing/${service._id}`);
+        intervalId.current = setInterval(() => {
+          getFileStatus();
+        }, 2000)
       })
       .catch((err) => {
         console.log(err.response.data);
-        setLoading(false);
-        NotificationManager.warning(
-          "Something went wrong. Please try again",
-          "Error",
-          3000,
-          null,
-          null,
-          ""
-        );
+        NotificationManager.warning("Something went wrong. Please try again", "Error", 3000);
       });
   };
+
+  const getFileStatus = () => {
+    axios.get(`/api/briefing/file-status?service_id=${service._id}`)
+      .then((res) => {
+        setS3UploadProgress(res.data.progress);
+      })
+  }
 
   const handleChange = (e) => {
     updateFormData({
@@ -403,16 +423,20 @@ const PD3DExteriorRenders = ({ service, orders, history }) => {
                     className={`btn-shadow btn-multiple-state ${
                       loading ? "show-spinner" : ""
                     }`}
+                    disabled={loading}
                     size="lg"
                   >
-                    <span className="spinner d-inline-block">
-                      <span className="bounce1" />
-                      <span className="bounce2" />
-                      <span className="bounce3" />
-                    </span>
-                    <span className="label">
-                      <IntlMessages id="briefing.submit" />
-                    </span>
+                    <span>{loading && (
+                      <>
+                      <Spinner style={{width: '1rem', height: '1rem', marginRight: '10px'}} />
+                      {parseInt((uploadProgress + s3UploadPorgress) / 2)} %
+                      </>
+                    )}</span>
+                    {!loading && (
+                      <span className="label">
+                        <IntlMessages id="briefing.submit" />
+                      </span>
+                    )}
                   </Button>
                 </FormGroup>
               </Form>

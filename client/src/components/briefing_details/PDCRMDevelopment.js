@@ -87,20 +87,6 @@ const PDCRMDevelopment = ({ service, orders, downloads, brief, backupNotes }) =>
                       <Row>
                         <Colxx sm="12">
                           {
-                            brief.projectAddress && (
-                              <p className="m-0 pt-3 pb-2 d-flex align-items-center border-dotted-bottom">
-                                <span className="text-theme-1 font-weight-bold">
-                                  Project Address
-                                </span>
-                                <span className="ml-auto">
-                                {brief.projectAddress}
-                                </span>
-                              </p>
-                            )
-                          }
-                        </Colxx>
-                        <Colxx sm="12">
-                          {
                             brief.contactMethod && (
                               <>
                                 <p className="m-0 pt-3 pb-2 d-flex align-items-center border-dotted-bottom">

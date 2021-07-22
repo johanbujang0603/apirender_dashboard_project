@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { injectIntl } from "react-intl";
 import {
@@ -11,6 +11,7 @@ import {
   Input,
   CardBody,
   CustomInput,
+  Spinner,
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
@@ -34,8 +35,19 @@ const initialFormData = {
 };
 
 const PMBrandDevelopment = ({ service, orders, history }) => {
+  let intervalId = useRef(null)
+
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);
+
+  useEffect(() => {
+    if (uploadProgress >= 100) {
+      console.log("completed");
+      setLoading(false);
+      history.push(`/thank-you/briefing/${service._id}`);
+    }
+  }, [uploadProgress])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,32 +58,30 @@ const PMBrandDevelopment = ({ service, orders, history }) => {
     postFormData.append("serviceId", service._id);
     postFormData.append("content", JSON.stringify(formData));
 
+        
     const config = {
       headers: {
         "content-type": "multipart/form-data",
       },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
     };
-
+    
     axios
       .post(`/api/briefing/save`, postFormData, config)
       .then((res) => {
-        setLoading(false);
-        history.push(`/thank-you/briefing/${service._id}`);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err.response.data);
-        setLoading(false);
-        NotificationManager.warning(
-          "Something went wrong. Please try again",
-          "Error",
-          3000,
-          null,
-          null,
-          ""
-        );
+        NotificationManager.warning("Something went wrong. Please try again", "Error", 3000);
       });
   };
-  
+
   const handleChange = (e) => {
     updateFormData({
       ...formData,
@@ -289,16 +299,20 @@ const PMBrandDevelopment = ({ service, orders, history }) => {
                     className={`btn-shadow btn-multiple-state ${
                       loading ? "show-spinner" : ""
                     }`}
+                    disabled={loading}
                     size="lg"
                   >
-                    <span className="spinner d-inline-block">
-                      <span className="bounce1" />
-                      <span className="bounce2" />
-                      <span className="bounce3" />
-                    </span>
-                    <span className="label">
-                      <IntlMessages id="briefing.submit" />
-                    </span>
+                    <span>{loading && (
+                      <>
+                      <Spinner style={{width: '1rem', height: '1rem', marginRight: '10px'}} />
+                      {parseInt(uploadProgress)} %
+                      </>
+                    )}</span>
+                    {!loading && (
+                      <span className="label">
+                        <IntlMessages id="briefing.submit" />
+                      </span>
+                    )}
                   </Button>
                 </FormGroup>
               </Form>
