@@ -155,6 +155,10 @@ const StripePaymentForm = ({
     axios.post(`/api/payments/charge`, postData).then((res) => {
       setIsLoading(false);
       history.push(`/thank-you/payment/${match.params.id}`);
+    }).catch((err) => {
+      setIsLoading(false);
+      NotificationManager.warning(err.response.data.message, "Error", 3000);
+      console.log(err);
     });
   };
 

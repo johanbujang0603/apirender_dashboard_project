@@ -88,7 +88,7 @@ router.post("/charge", async (req, res) => {
           });
           res.json({message: "Successed"});
         })
-        .catch(err => res.status(400).json({message: err}));
+        .catch(err => res.status(400).json({message: err.message}));
       } catch (err) {
         res.status(400).json({message: err});
       }
