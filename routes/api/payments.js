@@ -31,6 +31,7 @@ router.post("/charge", async (req, res) => {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     stripe.customers.list({email: userEmail})
     .then(async(customers) => {
+      console.log(customers);
       if (customers.data.length > 0) {
         return customers.data[0].id;
         // makePayment(stripe, totalAmount, body.token.id, projectID, customerID, res);
@@ -49,6 +50,7 @@ router.post("/charge", async (req, res) => {
       }
     })
     .then((customer) => {
+      console.log("customer:", customer);
       try {
         stripe.charges.create({
           amount: parseInt(totalAmount * 100),
