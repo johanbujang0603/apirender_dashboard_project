@@ -21,7 +21,8 @@ import { NotificationManager } from "../common/react-notifications";
 const initialFormData = {
   projectAddress: null,
   contactMethod: null,
-  additionalInformation: null
+  additionalInformation: null,
+  additionalFileLink: null
 };
 
 const PDCommercialFloorPlans = ({ service, history }) => {
@@ -100,9 +101,26 @@ const PDCommercialFloorPlans = ({ service, history }) => {
                   <Label className="font-weight-bold">
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
+                  <p className="text-muted">
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
+                  </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
-                
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">
                     Project Address

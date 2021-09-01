@@ -22,6 +22,7 @@ const initialFormData = {
   contactMethod: null,
   haveLogo: null,
   notes: null,
+  additionalFileLink: null
 };
 
 const PMInfoBooklet = ({ service, orders, history }) => {
@@ -108,9 +109,25 @@ const PMInfoBooklet = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload your project file here. Include all images, renders, floor plans, company logo, text and other elements you would like shown on the booklet. 
-                    We will use utilise these materials to create your booklet.
+                    We will use utilise these materials to create your booklet. &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup row>
                   <Colxx sm={12}>

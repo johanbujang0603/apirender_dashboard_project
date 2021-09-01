@@ -21,7 +21,8 @@ import { NotificationManager } from "../common/react-notifications";
 const initialFormData = {
   propertyAddress: null,
   contactMethod: null,
-  additionalInformation: null
+  additionalInformation: null,
+  additionalFileLink: null
 };
 
 const PDPremiumRenders = ({ service, history }) => {
@@ -109,10 +110,26 @@ const PDPremiumRenders = ({ service, history }) => {
                   To achieve the best results and most accurate quote we require the architectural drawings in either PDF or CAD file. 
                   <br />
                   Please note that to proceed with the premium renders we will also require further plans and details regarding the project including landscape plans, internal finishes and fittings and Exterior Materials Specs.
+                  <br />
+                  Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
-                
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold text-primary">
                     Property Address

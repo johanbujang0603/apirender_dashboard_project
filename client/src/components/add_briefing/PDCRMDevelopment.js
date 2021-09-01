@@ -20,7 +20,8 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   contactMethod: null,
-  additionalInformation: null
+  additionalInformation: null,
+  additionalFileLink: null
 };
 
 const PDCRMDevelopment = ({ service, history }) => {
@@ -106,9 +107,25 @@ const PDCRMDevelopment = ({ service, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted">
-                    To assist with us preparing a quote, please upload any relevant files (i.e, information on your company, projects, etc.)
+                    To assist with us preparing a quote, please upload any relevant files (i.e, information on your company, projects, etc.) &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">

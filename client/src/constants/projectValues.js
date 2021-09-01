@@ -16,7 +16,7 @@ export const projectCategories = [
   },
   {
     id: 3,
-    desc: "Project Marketing",
+    desc: "3D Renders",
     value: "PROPERTY_DEVELOPMENT",
     img: "/assets/img/category/property_development.png",
   },
@@ -28,7 +28,7 @@ export const projectCategories = [
   },
   {
     id: 5,
-    desc: "Design & Branding",
+    desc: "Project Marketing",
     value: "PROJECT_MARKETING_DESIGN",
     img: "/assets/img/category/project_marketing.png",
   },
@@ -83,7 +83,7 @@ export const services = {
       id: 6,
       name: "Virtual Staging",
       desc:
-        "This option involves adding virtual furniture to the image.",
+        "Virtual Staging involves rendering furniture into a residential or commercial space.",
       img: "/assets/img/services/photo_retouching/Virtual_Staging.png",
       value: "PR_VIRTUAL_FURNITURE",
     },
@@ -309,24 +309,6 @@ export const services = {
       desc: `Please select the number of levels in each home. You will be able to select the layout style in the briefing section.`,
       img: "/assets/img/services/property_development/Floor_Plan_Renders.png",
       value: "PD_FLOOR_PLAN_RENDERS",
-    },
-    {
-      id: 14,
-      name: "Touch Screen Solutions",
-      desc: `Select from the touch screen solution options below to proceed to the project briefing and receive a quote of your project.`,
-      img: "/assets/img/services/property_development/Touch_Screen_Solutions.png",
-      itemsType: "SELECT_MULTIPLE",
-      is_free: true,
-      value: "PD_TOUCH_SCREEN_SOLUTIONS",
-    },
-    {
-      id: 15,
-      name: "CRM Development",
-      desc: `Select your business type from the below options to proceed to the project briefing and receive a quote for your project.`,
-      img: "/assets/img/services/property_development/CRM_Development.png",
-      itemsType: "SELECT_MULTIPLE",
-      is_free: true,
-      value: "PD_CRM_DEVELOPMENT",
     }
   ],
   VIRTUAL_RENOVATION: [
@@ -376,14 +358,6 @@ export const services = {
       value: "PM_SITE_PLAN",
     },
     {
-      id: 3,
-      name: "Commercial Floor Plan",
-      desc: "Select from options below.",
-      img:
-        "/assets/img/services/project_marketing_design_seo/Commercial_Floor_Plan.png",
-      value: "PM_SITE_COMMERCIAL_FLOOR_PLAN",
-    },
-    {
       id: 4,
       name: "DL Flyers",
       desc: "Select from option below.",
@@ -416,6 +390,32 @@ export const services = {
       itemsType: "SELECT_ONE",
       value: "PM_WEBSITES_POST_LAUNCH",
     },
+    {
+      id: 8,
+      name: "Commercial Floor Plan",
+      desc: "Select from options below.",
+      img:
+        "/assets/img/services/project_marketing_design_seo/Commercial_Floor_Plan.png",
+      value: "PM_SITE_COMMERCIAL_FLOOR_PLAN",
+    },
+    {
+      id: 9,
+      name: "Touch Screen Solutions",
+      desc: `Select from the touch screen solution options below to proceed to the project briefing and receive a quote of your project.`,
+      img: "/assets/img/services/property_development/Touch_Screen_Solutions.png",
+      itemsType: "SELECT_MULTIPLE",
+      is_free: true,
+      value: "PD_TOUCH_SCREEN_SOLUTIONS",
+    },
+    {
+      id: 10,
+      name: "CRM Development",
+      desc: `Select your business type from the below options to proceed to the project briefing and receive a quote for your project.`,
+      img: "/assets/img/services/property_development/CRM_Development.png",
+      itemsType: "SELECT_MULTIPLE",
+      is_free: true,
+      value: "PD_CRM_DEVELOPMENT",
+    }
   ],
   PRINTING_SERVICES: [
     {
@@ -571,6 +571,10 @@ export const options = {
           name: "Remove 1-3 Small Items",
           desc: "Remove 1-3 Small Items (i.e. Fallen tree branches)",
           value: "PR_DAY_TO_DUSK_ITEM_REMOVAL_SMALL_ITEMS",
+          example_images: [
+            "/assets/img/services/example/Small-Day-to-Dusk/A.jpg",
+            "/assets/img/services/example/Small-Day-to-Dusk/B.jpg"
+          ],
         },
         {
           price: 10.0,
@@ -578,6 +582,10 @@ export const options = {
           desc:
             "Remove 3+ Small Items or Large Items (i.e. Fallen Leaves or Construction debris)",
           value: "PR_DAY_TO_DUSK_ITEM_REMOVAL_LARGE_ITEMS",
+          example_images: [
+            "/assets/img/services/example/Large-Day-to-Dusk/A.jpg",
+            "/assets/img/services/example/Large-Day-to-Dusk/B.jpg"
+          ],
         },
       ],
     },
@@ -594,6 +602,10 @@ export const options = {
           name: "Remove 1-3 Small Items",
           desc: "Remove 1-3 Small Items (i.e. 1-3 Parked vehicles)",
           value: "PR_AERIAL_EDITING_ITEM_REMOVAL_SMALL_ITEMS",
+          example_images: [
+            "/assets/img/services/example/AERIAL-SMALL/A.jpg",
+            "/assets/img/services/example/AERIAL-SMALL/B.jpg"
+          ],
         },
         {
           price: 10.0,
@@ -601,11 +613,11 @@ export const options = {
           desc:
             "Remove 3+ Small Items or Large Items (i.e. Several Vehicles or Construction debris and machinery)",
           value: "PR_AERIAL_EDITING_ITEM_REMOVAL_LARGE_ITEMS",
+          example_images: [
+            "/assets/img/services/example/AERIAL-LARGE/A.jpg",
+            "/assets/img/services/example/AERIAL-LARGE/B.jpg"
+          ],
         },
-      ],
-      example_images: [
-        "/assets/img/services/example/Aerial_Editing_removal_b.jpg",
-        "/assets/img/services/example/Aerial_Editing_removal_a.jpg",
       ],
     },
     {
@@ -670,12 +682,8 @@ export const options = {
       value: "PR_VIRTUAL_FURNITURE_RESIDENTIAL",
       price: 35.0,
       example_images: [
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/1A.JPG",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/1B.jpg",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/2A.JPG",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/2B.jpg",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/3A.JPG",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/3B.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/Residential_VS_Before.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/Residnetial_VS_After.jpg"
 
       ],
     },
@@ -686,9 +694,7 @@ export const options = {
       price: 45.0,
       example_images: [
         "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/1A.jpg",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/1B.jpg",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/2A.jpg",
-        "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/2B.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/1B.jpg"
       ],
     },
     {
@@ -743,7 +749,7 @@ export const options = {
             "Commercial: Suitable for images of office space, meeting rooms, cafes, etc.",
           value: "PR_360_IMAGE_ENHANCEMENT_VIRTUAL_FURNITURE_COMMERCIAL",
           example_link:
-            "https://tours.propertyrender.com/share/7Z1mG?fs=1&vr=1&sd=1&thumbs=1&chromeless=1&logo=0",
+            "https://apirender-dashboard-bucket-2020-sep.s3.ap-southeast-2.amazonaws.com/examples/LINK_DOC.docx",
         },
       ],
     },

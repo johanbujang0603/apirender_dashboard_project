@@ -16,11 +16,10 @@ import IntlMessages from "../../helpers/IntlMessages";
 import { NotificationManager } from "../../components/common/react-notifications";
 
 const ChangePassword = ({ history, user }) => {
-  // const { messages } = intl;
   const [loading, setLoading] = useState(false);
   const handleChangePassword = (values) => {
     setLoading(true);
-    const formData = {...values};
+    const formData = { ...values };
     formData.userId = user._id;
     axios.post(
       "/api/users/change-password", formData
@@ -28,24 +27,10 @@ const ChangePassword = ({ history, user }) => {
       return res.data
     }).then((data) => {
       setLoading(false);
-      NotificationManager.success(
-        "The password has been changed successfully",
-        "Succcess!",
-        3000,
-        null,
-        null,
-        ""
-      );
+      NotificationManager.success("The password has been changed successfully", "Succcess!");
     }).catch((error) => {
       setLoading(false);
-      NotificationManager.warning(
-        error.message,
-        "Error!",
-        3000,
-        null,
-        null,
-        ""
-      );
+      NotificationManager.warning(error.message, "Error!");
     });
   }
   const initialValues = {
@@ -83,7 +68,7 @@ const ChangePassword = ({ history, user }) => {
                         <FormGroup className="form-group has-float-label  mb-4">
                           <Label>
                             <IntlMessages
-                              id="user.password"
+                              id="user.new-password"
                             />
                           </Label>
                           <Field

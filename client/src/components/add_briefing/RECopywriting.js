@@ -33,6 +33,7 @@ const initialFormData = {
   optionalQuestion: null,
   optionalQuestion1: null,
   optionalQuestion2: null,
+  additionalFileLink: null
 };
 
 const RECopywriting = ({ service, history }) => {
@@ -118,9 +119,25 @@ const RECopywriting = ({ service, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    Please upload existing photographs, floor plans and other visuals you have regarding the subject property.
+                    Please upload existing photographs, floor plans and other visuals you have regarding the subject property.&nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 
                 <FormGroup row>

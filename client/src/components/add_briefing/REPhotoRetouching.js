@@ -34,6 +34,7 @@ const initialFormData = {
   grassEnhancement: null,
   interiorLights: null,
   replaceTVScreen: null,
+  additionalFileLink: null
 };
 
 const REPhotoRetouching = ({ service, orders, history }) => {
@@ -134,10 +135,25 @@ const REPhotoRetouching = ({ service, orders, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    Please upload the file/s here. We accept all formats (JPEG,
-                    Tiff, ARW, PNG, PSD, CR2, etc).
+                    Please upload the file/s here. We accept all formats (JPEG, Tiff, ARW, PNG, PSD, CR2, etc). &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 {orders.find(
                   (o) =>

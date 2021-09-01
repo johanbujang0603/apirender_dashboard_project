@@ -59,33 +59,33 @@ export const grassEnhancementExamples = [
 
 export const bedSpreadExamples = [
     {
-        src: '/assets/img/briefing/realestate_photo_retouching/bed_spread_replacement/1.JPG',
+        src: '/assets/img/briefing/realestate_photo_retouching/bed_spread_replacement/Bedspread_replacement_after.jpg',
         title: 'Before'
     },
     {
-        src: '/assets/img/briefing/realestate_photo_retouching/bed_spread_replacement/2.JPG',
+        src: '/assets/img/briefing/realestate_photo_retouching/bed_spread_replacement/Bedspread_replacement_before.jpg',
         title: 'After'
     },
 ]
 
 export const interiorLightsExamples = [
     {
-        src: '/assets/img/briefing/realestate_photo_retouching/turn_interior_lights_on/turn_on_lights_before.JPG',
+        src: '/assets/img/briefing/realestate_photo_retouching/turn_interior_lights_on/turn_on_lights_before.jpg',
         title: 'Before'
     },
     {
-        src: '/assets/img/briefing/realestate_photo_retouching/turn_interior_lights_on/turn_on_lights_after.JPG',
+        src: '/assets/img/briefing/realestate_photo_retouching/turn_interior_lights_on/turn_on_lights_after.jpg',
         title: 'After'
     },
 ]
 
 export const replaceTVExamples = [
     {
-        src: '/assets/img/briefing/realestate_photo_retouching/replace_tv_screen/replace_tv_blackcontrast.JPG',
+        src: '/assets/img/briefing/realestate_photo_retouching/replace_tv_screen/replace_tv_blackcontrast.jpg',
         title: 'Black Contrast'
     },
     {
-        src: '/assets/img/briefing/realestate_photo_retouching/replace_tv_screen/replace_tv_stockphoto.JPG',
+        src: '/assets/img/briefing/realestate_photo_retouching/replace_tv_screen/replace_tv_stockphoto.jpg',
         title: 'Stock Photo'
     },
 ]

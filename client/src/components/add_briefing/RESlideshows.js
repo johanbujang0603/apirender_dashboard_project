@@ -23,9 +23,10 @@ const initialFormData = {
   contactNumber: null,
   contactEmail: null,
   musicStyle: null,
+  additionalFileLink: null
 };
 
-const RESlideshows = ({ service, orders, history }) => {
+const RESlideshows = ({ service, history }) => {
   const dropzone = useRef();
   const companyLogoDropzone = useRef();
   
@@ -116,9 +117,25 @@ const RESlideshows = ({ service, orders, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    Upload up to 20 images
+                    Upload up to 20 images &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup row>
                   <Colxx sm="6">

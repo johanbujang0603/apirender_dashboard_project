@@ -31,12 +31,10 @@ const initialFormData = {
   companyStory: null,
   brand3Links: null,
   interactionCustomer: null,
-  specificGuidelines: null,
+  specificGuidelines: null
 };
 
-const PMBrandDevelopment = ({ service, orders, history }) => {
-  let intervalId = useRef(null)
-
+const PMBrandDevelopment = ({ service, history }) => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);

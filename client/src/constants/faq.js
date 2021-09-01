@@ -12,7 +12,7 @@ const faq = [
     {
       question: "Do we have to sign a contract?",
       answer:
-        "We may ask you to sign a contract outlining services, fees and schedule for very large 3D rendering projects, however, all orders submitted via phone, email or directly through the client dashboard are bound to our terms and conditions. Please click here to view our terms and conditions.",
+        `We may ask you to sign a contract outlining services, fees and schedule for very large 3D rendering projects, however, all orders submitted via phone, email or directly through the client dashboard are bound to our terms and conditions. Please click <a href="https://www.propertyrender.com/terms-conditions/"><b>here</b></a> to view our terms and conditions.`,
     },
     {
       question: "What currency are your prices in?",

@@ -3,7 +3,6 @@ import { Row, Card, CardTitle, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { Colxx } from '../components/common/CustomBootstrap';
 import IntlMessages from '../helpers/IntlMessages';
-import queryString from 'query-string';
 
 const Thankyou = ({match}) => {
   const [action, setAction] = useState(null);
@@ -43,7 +42,7 @@ const Thankyou = ({match}) => {
                       action && action==='payment' && ( 
                         <>
                           Payment Confirmed.<br />
-                          Thanks!
+                          Thank you for your order!
                         </> 
                       )
                     }
@@ -59,7 +58,7 @@ const Thankyou = ({match}) => {
                     {
                       action && action === 'briefing' && isQuote !== 'true' && ( 
                         <>
-                          <p className="">Thank you, the project brief has been submitted successsfully.</p>
+                          <p className="">Thank you, the project brief has been submitted successfully.</p>
                           <p className="">Your order is now in progress. </p>
                           <p className="">We will contact you if we require any further information. </p>
                           <p className="">If you have any questions, please contact your account manager via the dashboard.</p>

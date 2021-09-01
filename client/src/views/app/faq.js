@@ -2,7 +2,7 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react';
 import { Row, Collapse, Card, Button } from 'reactstrap';
-import Breadcrumb from '../../containers/navs/Breadcrumb';
+import IntlMessages from '../../helpers/IntlMessages';
 import {
   Separator,
   Colxx,
@@ -15,7 +15,7 @@ const Faq = ({ match }) => {
     <>
       <Row>
         <Colxx xxs="12">
-          <Breadcrumb heading="menu.faq" match={match} />
+          <h1><IntlMessages id="menu.faq" /></h1>
           <Separator className="mb-5" />
         </Colxx>
 

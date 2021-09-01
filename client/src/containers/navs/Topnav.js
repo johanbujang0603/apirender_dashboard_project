@@ -212,31 +212,12 @@ const TopNav = ({
       </a>
 
       <div className="navbar-right">
-        {isDarkSwitchActive && <TopnavDarkSwitch />}
-        <div className="header-icons d-inline-block align-middle">
-          <TopnavEasyAccess />
-          {/* <TopnavNotifications /> */}
-          <button
-            className="header-icon btn btn-empty d-none d-sm-inline-block"
-            type="button"
-            id="fullScreenButton"
-            onClick={toggleFullScreen}
-          >
-            <i className="simple-icon-plus d-block" />
-          </button>
-        </div>
         <div className="user d-inline-block">
           <UncontrolledDropdown className="dropdown-menu-right">
             <DropdownToggle className="p-0" color="empty">
-              <span className="name mr-1">{loginUser.first_name} {loginUser.last_name}</span>
+              <span className="name mr-1">{loginUser.first_name}&nbsp;{loginUser.last_name}</span>
               <span>
-                {
-                  loginUser.avatar != null ? (
-                    <img alt="avatar" src={`/${loginUser.avatar}`} width="40px" height="40px" />
-                  ): (
-                    <img alt="avatar" src='/assets/img/avatar.png' />
-                  )
-                }
+                <img alt="avatar" src={loginUser.avatar ? `${loginUser.avatar}` : '/assets/img/avatar.png'} width="40px" height="40px" />
               </span>
             </DropdownToggle>
             <DropdownMenu className="mt-3" right>

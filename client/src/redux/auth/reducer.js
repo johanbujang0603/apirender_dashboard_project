@@ -46,6 +46,7 @@ export default (state = INIT_STATE, action) => {
     case REGISTER_USER_SUCCESS:
       return { ...state, loading: false, user: "", loginError: null, registerError: null };
     case REGISTER_USER_ERROR:
+      console.log(action.payload.message);
       return {
         ...state,
         loading: false,

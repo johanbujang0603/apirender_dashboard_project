@@ -24,7 +24,6 @@ import {
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const CustomerSettings = ({ history, user, receiveAuthUserAction }) => {
-  // const { messages } = intl;
   const [loading, setLoading] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
@@ -54,25 +53,11 @@ const CustomerSettings = ({ history, user, receiveAuthUserAction }) => {
       .then((data) => {
         receiveAuthUserAction(history);
         setLoading(false);
-        NotificationManager.success(
-          "The user has been updated successfully",
-          "Succcess!",
-          3000,
-          null,
-          null,
-          ""
-        );
+        NotificationManager.success("The user has been updated successfully", "Succcess!");
       })
       .catch((error) => {
         setLoading(false);
-        NotificationManager.warning(
-          error.message,
-          "Error!",
-          3000,
-          null,
-          null,
-          ""
-        );
+        NotificationManager.warning(error.message, "Error!");
       });
   };
 
@@ -80,11 +65,11 @@ const CustomerSettings = ({ history, user, receiveAuthUserAction }) => {
     firstName: user.first_name,
     lastName: user.last_name,
     email: user.email,
-    companyName: user.company_name,
-    jobTitle: user.job_title,
-    country: user.country,
+    companyName: user.company_name ? user.company_name : '',
+    jobTitle: user.job_title ? user.job_title : '',
+    country: user.country ? user.country : '',
     role: user.role,
-    phoneNumber: user.phone_number,
+    phoneNumber: user.phone_number ? user.phone_number : '',
   };
 
   return (
@@ -110,7 +95,7 @@ const CustomerSettings = ({ history, user, receiveAuthUserAction }) => {
                   phoneNumber: Yup.string().matches(
                     phoneRegExp,
                     "Phone number is not valid"
-                  ),
+                  ).required("Phone number is required"),
                 })}
               >
                 {({ errors, touched }) => (

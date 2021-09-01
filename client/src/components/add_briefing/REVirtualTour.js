@@ -22,9 +22,10 @@ const initialFormData = {
   includeCompanyLogo: null,
   customUrl: null,
   notes: null,
+  additionalFileLink: null
 };
 
-const REVirtualTour = ({ service, orders, history }) => {
+const REVirtualTour = ({ service, history }) => {
   const dropzone = useRef();
   const logoFilesDropzone = useRef();
   
@@ -109,11 +110,25 @@ const REVirtualTour = ({ service, orders, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    File Upload (INSV, INSP, MP4, or JPG, etc). Please provide
-                    reference to the room type by naming your files by the room
-                    name (i.e. bedroom1.JPG)
+                    File Upload (INSV, INSP, MP4, or JPG, etc). Please provide reference to the room type by naming your files by the room name (i.e. bedroom1.JPG) &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">Logo</Label>

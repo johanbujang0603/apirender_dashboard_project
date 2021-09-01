@@ -18,6 +18,7 @@ import IntlMessages from "../../helpers/IntlMessages";
 import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
+  additionalFileLink: null,
   notes: null,
 };
 
@@ -50,7 +51,6 @@ const PRImageEnhancement = ({ service, orders, history }) => {
     
     postFormData.append("serviceId", service._id);
     postFormData.append("content", JSON.stringify(formData));
-    
         
     const config = {
       headers: {
@@ -105,9 +105,25 @@ const PRImageEnhancement = ({ service, orders, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    Please upload the file/s here. We accept all formats (INSV, INSP, MP4, JPEG, etc.).
+                    Please upload the file/s here. We accept all formats (INSV, INSP, MP4, JPEG, etc.). &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 {(orders.find(
                   (o) =>

@@ -19,6 +19,7 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   architecturealBlueprints: null,
+  additionalFileLink: null
 };
 
 const VRPoolConstruction = ({ service, orders, history }) => {
@@ -106,9 +107,25 @@ const VRPoolConstruction = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload a high resolution image of the space in which the pool will be constructed.
-                    Please also upload a detailed brief including a description, sketch and/or reference images of the pool project.
+                    Please also upload a detailed brief including a description, sketch and/or reference images of the pool project. &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">

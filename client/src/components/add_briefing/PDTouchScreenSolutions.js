@@ -22,7 +22,8 @@ const initialFormData = {
   selling: null,
   projectAddress: null,
   contactMethod: null,
-  additionalInformation: null
+  additionalInformation: null,
+  additionalFileLink: null
 };
 
 const PDTouchScreenSolutions = ({ service, history }) => {
@@ -108,10 +109,26 @@ const PDTouchScreenSolutions = ({ service, history }) => {
                   </Label>
                   <p className="text-muted">
                     To assist us with preparing an accurate quote, please upload any relevant files (i.e. information on your project, company, existing marketing collateral, etc.)
+                    &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
-                
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">
                     What Are You Selling

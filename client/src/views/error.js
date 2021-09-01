@@ -30,12 +30,8 @@ const Error = () => {
                     <span className="logo-single" />
                   </NavLink>
                   <CardTitle className="mb-4">
-                    <IntlMessages id="pages.error-title" />
+                    Lots of exciting course, articles and other free resources are comming soon!
                   </CardTitle>
-                  <p className="mb-0 text-muted text-small mb-0">
-                    <IntlMessages id="pages.error-code" />
-                  </p>
-                  <p className="display-1 font-weight-bold mb-5">404</p>
                   <Button
                     href="/app"
                     color="primary"

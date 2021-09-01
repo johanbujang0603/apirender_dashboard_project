@@ -22,7 +22,7 @@ const UserDetail = ({ intl, match, history }) => {
           return res.data;
         })
         .then((data) => {
-          setUser(data.data);
+          setUser(data);
           setIsLoaded(true);
         });
     }
@@ -43,11 +43,10 @@ const UserDetail = ({ intl, match, history }) => {
         </Colxx>
       </Row>
       {
-        user.role === 'admin' ? (
-          <AdminDetail user={user} history={history} />
-        ) : (
-          <CustomerDetail user={user} history={history} />
-        )
+        user && user.role === 'admin' && (<AdminDetail user={user} history={history} />)
+      }
+      {
+        user && user.role !== 'admin' && (<CustomerDetail user={user} history={history} />)
       }
     </>
     )

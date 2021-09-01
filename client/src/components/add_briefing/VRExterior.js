@@ -21,6 +21,7 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   architecturealBlueprints: null,
+  additionalFileLink: null
 };
 const roomTypes = [
   {
@@ -45,7 +46,7 @@ const roomTypes = [
   },
 ];
 
-const VRExterior = ({ service, orders, history }) => {
+const VRExterior = ({ service, history }) => {
   const dropzone = useRef();
   
   let intervalId = useRef(null)
@@ -136,7 +137,8 @@ const VRExterior = ({ service, orders, history }) => {
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label className="font-weight-bold">
-                    Please upload a high resolution photo of the exterior space in which the renovation will be completed.
+                    Please upload a high resolution photo of the exterior space in which the renovation will be completed. &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </Label>
                   <Row>
                     <Colxx>
@@ -153,6 +155,21 @@ const VRExterior = ({ service, orders, history }) => {
                       <FileDropzone ref={dropzone} />
                     </Colxx>
                   </Row>
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">

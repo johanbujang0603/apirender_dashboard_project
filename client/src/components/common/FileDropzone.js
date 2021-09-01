@@ -7,8 +7,8 @@ const ReactDOMServer = require('react-dom/server');
 
 const dropzoneConfig = {
   thumbnailHeight: 160,
-  maxFilesize: 1024,
-  maxFiles: 150,
+  maxFilesize: 256,
+  maxFiles: 20,
   parallelUploads: 5,
   autoProcessQueue: false,
   params: {

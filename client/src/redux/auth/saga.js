@@ -59,7 +59,9 @@ const registerWithEmailPasswordAsync = async (userInfo) =>
   await axios
     .post("/api/users/register", userInfo)
     .then((user) => user)
-    .catch((error) => error.response.data);
+    .catch((error) => {
+      throw error.response.data
+    });
 
 function* registerWithEmailPassword({ payload }) {
   const userInfo = payload.user;
@@ -69,7 +71,7 @@ function* registerWithEmailPassword({ payload }) {
     yield put(registerUserSuccess());
     history.push("/");
   } catch (error) {
-    yield put(registerUserError(error));
+    yield put(registerUserError(error.message ? error.message : 'Something went wrong!, Please try again.'));
   }
 }
 
@@ -92,7 +94,6 @@ function* receiveAuthUser({ payload }) {
     localStorage.setItem("current_user", JSON.stringify(user));
     yield put(receiveAuthUserSuccess(user));
   } catch (error) {
-    console.log("GET_ME_ERROR: ", error);
     localStorage.clear();
     history.push("/");
   }
@@ -128,7 +129,6 @@ function* forgotPassword({ payload }) {
   const { email } = payload.forgotUserMail;
   try {
     const forgotPasswordStatus = yield call(forgotPasswordAsync, email);
-    console.log(forgotPasswordStatus);
     // if (!forgotPasswordStatus) {
     //   yield put(forgotPasswordSuccess('success'));
     // } else {

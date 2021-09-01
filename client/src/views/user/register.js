@@ -26,16 +26,8 @@ const Register = ({ history, loading, registerError, registerUserAction }) => {
   const [role] = useState("customer");
 
   useEffect(() => {
-    if (registerError) {
-      NotificationManager.warning(
-        registerError,
-        "Register Error",
-        3000,
-        null,
-        null,
-        ""
-      );
-    }
+    if (registerError)
+      NotificationManager.warning(registerError, "Reigstration Error", 3000);
   }, [registerError]);
 
   const onUserRegister = (values) => {
@@ -284,7 +276,7 @@ const Register = ({ history, loading, registerError, registerUserAction }) => {
                     </Colxx>
                   </FormGroup>
                   <div className="d-flex justify-content-between align-items-center">
-                    <NavLink to="/user/login">
+                    <NavLink to="/user/login" className="font-weight-bold">
                       You have already an account? Sign in now.
                     </NavLink>
                     <Button color="primary" className="btn-shadow" size="lg">

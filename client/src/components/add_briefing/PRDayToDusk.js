@@ -21,6 +21,7 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   notes: null,
+  additionalFileLink: null
 };
 
 const PRDayToDusk = ({ service, orders, history }) => {
@@ -114,9 +115,25 @@ const PRDayToDusk = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload the file/s here. We accept all formats (JPEG,
-                    Tiff, ARW, PNG, PSD, CR2, etc).
+                    Tiff, ARW, PNG, PSD, CR2, etc). &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">

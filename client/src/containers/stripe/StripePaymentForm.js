@@ -57,28 +57,15 @@ class _CardForm extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     if (this.props.printingService === true && !checkObject(this.props.deliveryAddr)) {
-      NotificationManager.warning(
-        "Please fill delivery address.",
-        "Error",
-        3000,
-        null,
-        null,
-        ""
-      );
+      NotificationManager.warning("Please fill delivery address.", "Error", 3000);
       return;
     }
-    if (
-      this.props.printingService === true &&
-      this.props.deliveryOption === null
-    ) {
+    if (this.props.printingService === true && this.props.deliveryOption === null) {
       this.props.handleResult();
     } else {
       this.props.setIsLoading(true);
-      if (this.props.stripe) {
-        this.props.stripe.createToken().then(this.props.handleResult);
-      } else {
-        console.log("Stripe.js hasn't loaded yet.");
-      }
+      if (this.props.stripe) this.props.stripe.createToken().then(this.props.handleResult);
+      else console.log("Stripe.js hasn't loaded yet.");
     }
   };
 
@@ -152,6 +139,7 @@ const StripePaymentForm = ({
       deliveryOption: delivery,
       deliveryAddress: deliveryAddr
     };
+    console.log(postData);
     axios.post(`/api/payments/charge`, postData).then((res) => {
       setIsLoading(false);
       history.push(`/thank-you/payment/${match.params.id}`);

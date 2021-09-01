@@ -16,10 +16,10 @@ import { Colxx } from "../common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
 import FileDropzone from "../common/FileDropzone";
 import { NotificationManager } from "../common/react-notifications";
-import { downloadPrintingFile } from '../../helpers/Utils';
 
 const initialFormData = {
   notes: null,
+  additionalFileLink: null
 };
 
 const PSCorfulteSign = ({ service, orders, history, project }) => {
@@ -108,9 +108,25 @@ const PSCorfulteSign = ({ service, orders, history, project }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                  Upload your print-ready file here. Refer to the File Prepartion Guide for instructions on creating your file.
+                  Upload your print-ready file here. Refer to the File Prepartion Guide for instructions on creating your file. &nbsp;
+                  Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">

@@ -207,6 +207,10 @@ const OrderSummary = ({ setDeliveryOption, services, project, handleUpdateServic
               </tbody>
             </Table>
           </div>
+          <FormGroup>
+            <Label className="text-primary font-weight-bolder">Coupon</Label>
+            <Input type="text" name="coupon" placeholder="Enter coupon" />
+          </FormGroup>
           {
             project.category === "PRINTING_SERVICES" && (
               <>

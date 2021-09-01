@@ -20,7 +20,7 @@ import IntlMessages from "../../helpers/IntlMessages";
 import { downloadFile } from '../../helpers/Utils';
 import {bytesToSize} from '../../helpers/Utils';
 
-const PRPhotoRetouching = ({ service, orders, downloads, brief, backupNotes }) => {
+const PRPhotoRetouching = ({ downloads, brief, backupNotes }) => {
   const [activeTab, setActiveTab] = useState('details');
   return (
     <>
@@ -323,6 +323,16 @@ const PRPhotoRetouching = ({ service, orders, downloads, brief, backupNotes }) =
                                 </Colxx>
                               )
                           }})
+                        }
+                      </Row>
+                      <Row>
+                        {
+                          brief.additionalFileLink && (
+                            <Colxx sm="12">
+                              <span className="text-danger font-weight-bold">File Link:</span>&nbsp;
+                              <a className="text-primary" href={brief.additionalFileLink} target="_blank">{brief.additionalFileLink}</a>
+                            </Colxx>
+                          )
                         }
                       </Row>
                     </CardBody>

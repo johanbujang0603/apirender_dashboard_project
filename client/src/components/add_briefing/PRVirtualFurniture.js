@@ -20,14 +20,12 @@ import CustomSelectInput from "../common/CustomSelectInput";
 import IntlMessages from "../../helpers/IntlMessages";
 import ThumbSelection from "../custom/ThumbSelection";
 import { NotificationManager } from "../common/react-notifications";
-import {
-  furnitureStyles,
-  roomTypes,
-} from "../../constants/photoRetouchingValues";
+import { furnitureStyles } from "../../constants/photoRetouchingValues";
 
 const initialFormData = {
   imageRetouching: null,
   notes: null,
+  additionalFileLink: null
 };
 
 const PRVirtualFurniture = ({ service, orders, history }) => {
@@ -128,16 +126,32 @@ const PRVirtualFurniture = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload the file/s here. We accept all formats (JPEG,
-                    Tiff, ARW, PNG, PSD, CR2, etc).
+                    Tiff, ARW, PNG, PSD, CR2, etc). &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
-
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
                 <FormGroup row>
                   <Colxx md="6">
                     <Label className="font-weight-bold">
                       <IntlMessages id="briefing.image-retouching" />
                     </Label>
+                    <p className="text-muted text-small">A 20-step image enhancement process will be applied to the image.</p>
                     <div>
                       <CustomInput
                         type="radio"
@@ -216,15 +230,12 @@ const PRVirtualFurniture = ({ service, orders, history }) => {
                     <Label className="font-weight-bold">
                       <IntlMessages id="briefing.room-type" />
                     </Label>
-                    <Select
-                      components={{ Input: CustomSelectInput }}
-                      className="react-select"
-                      classNamePrefix="react-select"
+                    <Input
+                      type="text"
+                      placeholder="Enter Room Type"
                       name="roomType"
-                      onChange={(selectedOption) => {
-                        handleSelect(selectedOption.value, "roomType");
-                      }}
-                      options={roomTypes}
+                      id="roomType"
+                      onChange={handleChange}
                     />
                   </Colxx>
                 </FormGroup>

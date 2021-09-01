@@ -156,6 +156,16 @@ const PRImageEnhancement = ({ service, orders, downloads, brief, backupNotes }) 
                           }})
                         }
                       </Row>
+                      <Row>
+                        {
+                          brief.additionalFileLink && (
+                            <Colxx sm="12">
+                              <span className="text-danger font-weight-bold">File Link:</span>&nbsp;
+                              <a className="text-primary" href={brief.additionalFileLink} target="_blank">{brief.additionalFileLink}</a>
+                            </Colxx>
+                          )
+                        }
+                      </Row>
                     </CardBody>
                   </Colxx>
                 </Row>

@@ -6,6 +6,7 @@ module.exports = {
   "user.forgot-password": "Forgot Password",
   "user.email": "E-mail",
   "user.email_preference": "Email Preference",
+  "user.new-password": "New Password",
   "user.password": "Password",
   "user.confirm-password": "Confirm Password",
   "user.companyname": "Company Name",
@@ -165,7 +166,7 @@ module.exports = {
   "briefing.colour-fade-description":
     "Colour fade is the process of removing colour saturation of the entire image except for the subject property. Include instructions or upload an image indicating the property boundary lines",
   "briefing.location-pin-drop": "Location Pin-Drop",
-  "briefing.location-pin-drop-description": `Location pin-drop is the placement of a location marker on any points of interest within close proximity to the property. Please list surrounding features you would like a 'pin-drop' added to or upload an image showing the location of the surrounding features (i.e. shopping centers, schools, parklands, etc.).`,
+  "briefing.location-pin-drop-description": `Location pin-drop is the placement of a location marker on any points of interest within close proximity to the property. Please upload an image showing the location of the surrounding features (i.e. shopping centers, schools, parklands, etc.).`,
   "briefing.single-lot-highlight": "Single Lot Highlight",
   "briefing.single-lot-highlight-description":
     "Single Lot Highlight is includes a boundary line around the property. Include instructions or upload an image indicating the property boundary lines",

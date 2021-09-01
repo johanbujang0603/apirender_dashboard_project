@@ -11,27 +11,24 @@ import {
   Form,
   Input,
   CustomInput,
-CardBody,
+  CardBody,
   Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import FileDropzone from "../common/FileDropzone";
 import CustomSelectInput from "../common/CustomSelectInput";
 import IntlMessages from "../../helpers/IntlMessages";
-import ThumbSelection from "../custom/ThumbSelection";
 import { NotificationManager } from "../common/react-notifications";
-import {
-  furnitureStyles,
-  roomTypes,
-} from "../../constants/photoRetouchingValues";
+import { roomTypes } from "../../constants/photoRetouchingValues";
 
 const initialFormData = {
   furnitureStyle: null,
   furnitureQuality: null,
   notes: null,
+  additionalFileLink: null
 };
 
-const REVirtualStaging = ({ service, orders, history }) => {
+const REVirtualStaging = ({ service, history }) => {
   const dropzone = useRef();
   const instructionDropzone = useRef();
   
@@ -112,13 +109,6 @@ const REVirtualStaging = ({ service, orders, history }) => {
     });
   };
 
-  const onFurnitureStyleCheck = (event, value) => {
-    updateFormData({
-      ...formData,
-      furnitureStyle: value,
-    });
-  };
-
   return (
     <>
       <Row>
@@ -132,12 +122,26 @@ const REVirtualStaging = ({ service, orders, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    Please upload the file/s here. We accept all formats (JPEG,
-                    Tiff, ARW, PNG, PSD, CR2, etc).
+                    Please upload the file/s here. We accept all formats (JPEG, Tiff, ARW, PNG, PSD, CR2, etc).&nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
-
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">
                     <IntlMessages id="briefing.room-type" />

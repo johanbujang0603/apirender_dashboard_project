@@ -21,6 +21,7 @@ import { NotificationManager } from "../common/react-notifications";
 const initialFormData = {
   finalRequirements: null,
   contactMethod: null,
+  additionalFileLink: null
 };
 
 const PDWalkthroughs = ({ service, orders, history }) => {
@@ -111,8 +112,25 @@ const PDWalkthroughs = ({ service, orders, history }) => {
                     If possible, include floor plans, sectionals, roof plans, elevations, landscape plans, and materials list.
                     We can also work from a detailed brief, sketches and examples;
                     however construction drawings will always result in a more accurate virtual reality experience.
+                    <br />
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">

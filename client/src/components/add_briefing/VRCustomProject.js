@@ -19,11 +19,11 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   notes: null,
+  additionalFileLink: null
 };
 
-const VRCustomProject = ({ service, orders, history }) => {
+const VRCustomProject = ({ service, history }) => {
   const dropzone = useRef();
-  const architecturealBlueprintsDropzone = useRef();
   const imageDropzone = useRef();
   
   let intervalId = useRef(null)
@@ -113,7 +113,8 @@ const VRCustomProject = ({ service, orders, history }) => {
                 <FormGroup>
                   <Label className="font-weight-bold">
                     Please upload a detailed brief including a description, sketch and reference files photos that highlight the pool shape and materials.
-                    If possible, include construction drawings and landscape plans for the project. 
+                    If possible, include construction drawings and landscape plans for the project.  &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </Label>
                   <Row>
                     <Colxx>
@@ -134,9 +135,25 @@ const VRCustomProject = ({ service, orders, history }) => {
                 <FormGroup>
                   <Label className="font-weight-bold">Upload Image File</Label>
                   <p className="text-muted text-small">
-                    Please upload a high-quality photo of the area that is to have the pool and landscaping constructed.  We will incorporate your new pool and landscaping into this photograph. 
+                    Please upload a high-quality photo of the area that is to have the pool and landscaping constructed.  We will incorporate your new pool and landscaping into this photograph.  &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={imageDropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Button

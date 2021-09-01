@@ -23,6 +23,7 @@ const initialFormData = {
   driveaway: null,
   fileOutputSize: null,
   additionalInformation: null,
+  additionalFileLink: null
 };
 
 const PD2DRendersExteriorElevation = ({ service, orders, history }) => {
@@ -109,9 +110,25 @@ const PD2DRendersExteriorElevation = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload elevation drawings or a detailed sketch here.
-                    We accept all file formats (JPEG, CR2, Tiff, PDF, etc.)
+                    We accept all file formats (JPEG, CR2, Tiff, PDF, etc.). &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup row>
                   <Colxx sm="4">

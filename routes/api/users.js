@@ -16,7 +16,6 @@ const s3 = new AWS.S3({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-
 // Load User model
 const User = require("../../models/User");
 
@@ -239,10 +238,8 @@ router.post("/update-customer", upload.single('avatar'), async (req, res) => {
         };
         try {
           const stored = await s3.upload(params).promise();
-          console.log(stored);
           newValues.avatar = stored.Location;
         } catch (err) {
-          console.log(err);
           return res.status(400).json(err);
         }
       }

@@ -22,6 +22,7 @@ const initialFormData = {
   haveLogo: null,
   contactMethod: null,
   notes: null,
+  additionalFileLink: null
 };
 
 const PMDLFlyers = ({ service, orders, history }) => {
@@ -108,11 +109,26 @@ const PMDLFlyers = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload your project files here. Include all images, company logo, text and other elements you would like shown on the DL Flyer. 
-                    We will use utilise these materials to create your DL Flyer.
+                    We will use utilise these materials to create your DL Flyer. &nbsp;
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
-                
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
                 <FormGroup row>
                   <Colxx sm={12}>
                     <Label className="font-weight-semibold">
