@@ -71,6 +71,7 @@ app.use("/api/actions", actions);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+
 cron.schedule("*/5 * * * * *", async () => {
     const files = await File.find({ is_uploaded: false });
     console.log("Cronjob is running");

@@ -835,6 +835,10 @@ export const options = {
           name: "Remove 1-3 Small Items",
           desc: "Remove 1-3 Small Items (i.e. Fallen tree branches)",
           value: "RE_DAY_TO_DUSK_ITEM_REMOVAL_SMALL_ITEMS",
+          example_images: [
+            "/assets/img/services/example/Small-Day-to-Dusk/A.jpg",
+            "/assets/img/services/example/Small-Day-to-Dusk/B.jpg"
+          ],
         },
         {
           price: 10.0,
@@ -842,6 +846,10 @@ export const options = {
           desc:
             "Remove 3+ Small Items or Large Items (i.e. Fallen Leaves or Construction debris)",
           value: "RE_DAY_TO_DUSK_ITEM_REMOVAL_LARGE_ITEMS",
+          example_images: [
+            "/assets/img/services/example/Large-Day-to-Dusk/A.jpg",
+            "/assets/img/services/example/Large-Day-to-Dusk/B.jpg"
+          ],
         },
       ],
     },
@@ -858,6 +866,10 @@ export const options = {
           name: "Remove 1-3 Small Items",
           desc: "Remove 1-3 Small Items (i.e. 1-3 Parked vehicles)",
           value: "RE_AERIAL_EDITING_ITEM_REMOVAL_SMALL_ITEMS",
+          example_images: [
+            "/assets/img/services/example/AERIAL-SMALL/A.jpg",
+            "/assets/img/services/example/AERIAL-SMALL/B.jpg"
+          ],
         },
         {
           price: 10.0,
@@ -865,11 +877,11 @@ export const options = {
           desc:
             "Remove 3+ Small Items or Large Items (i.e. Several Vehicles or Construction debris and machinery)",
           value: "RE_AERIAL_EDITING_ITEM_REMOVAL_LARGE_ITEMS",
+          example_images: [
+            "/assets/img/services/example/AERIAL-LARGE/A.jpg",
+            "/assets/img/services/example/AERIAL-LARGE/B.jpg"
+          ],
         },
-      ],
-      example_images: [
-        "/assets/img/services/example/Aerial_Editing_removal_b.jpg",
-        "/assets/img/services/example/Aerial_Editing_removal_a.jpg",
       ],
     },
     {
@@ -950,7 +962,7 @@ export const options = {
             "Commercial: Suitable for images of office space, meeting rooms, cafes, etc.",
           value: "RE_360_IMAGE_ENHANCEMENT_VIRTUAL_FURNITURE_COMMERCIAL",
           example_link:
-            "https://tours.propertyrender.com/share/7Z1mG?fs=1&vr=1&sd=1&thumbs=1&chromeless=1&logo=0",
+            "https://apirender-dashboard-bucket-2020-sep.s3.ap-southeast-2.amazonaws.com/examples/LINK_DOC.docx",
         },
       ],
     },
@@ -1059,12 +1071,8 @@ export const options = {
       value: "RE_VIRTUAL_STAGING_RESIDENTIAL",
       price: 35.0,
       example_images: [
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/residential/1A.JPG",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/residential/1B.jpg",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/residential/2A.JPG",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/residential/2B.jpg",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/residential/3A.JPG",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/residential/3B.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/Residential_VS_Before.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/residential/Residnetial_VS_After.jpg"
       ],
     },
     {
@@ -1073,10 +1081,8 @@ export const options = {
       value: "RE_VIRTUAL_STAGING_COMMERCIAL",
       price: 45.0,
       example_images: [
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/commercial/1A.jpg",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/commercial/1B.jpg",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/commercial/2A.jpg",
-        "/assets/img/services/example/RE_VIRTUAL_STAGING/commercial/2B.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/1A.jpg",
+        "/assets/img/services/example/PR_VIRTUAL_STAGING/commercial/1B.jpg"
       ],
     },
     {
