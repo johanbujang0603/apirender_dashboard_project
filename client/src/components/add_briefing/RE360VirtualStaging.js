@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { injectIntl } from "react-intl";
-import Select from "react-select";
 import {
   Row,
   Card,
@@ -10,20 +9,15 @@ import {
   Label,
   Form,
   Input,
-  CustomInput,
   CardBody,
   Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";
 import FileDropzone from "../common/FileDropzone";
-import CustomSelectInput from "../common/CustomSelectInput";
 import IntlMessages from "../../helpers/IntlMessages";
 import ThumbSelection from "../custom/ThumbSelection";
 import { NotificationManager } from "../common/react-notifications";
-import {
-  furnitureStyles,
-  roomTypes,
-} from "../../constants/photoRetouchingValues";
+import { furnitureStyles } from "../../constants/photoRetouchingValues";
 
 const initialFormData = {
   fileOutputSize: null,
@@ -171,15 +165,12 @@ const RE360VirtualStaging = ({ service, history }) => {
                     <Label className="font-weight-bold">
                       <IntlMessages id="briefing.room-type" />
                     </Label>
-                    <Select
-                      components={{ Input: CustomSelectInput }}
-                      className="react-select"
-                      classNamePrefix="react-select"
+                    <Input
+                      type="text"
+                      placeholder="Please enter room type/s"
                       name="roomType"
-                      onChange={(selectedOption) => {
-                        handleSelect(selectedOption.value, "roomType");
-                      }}
-                      options={roomTypes}
+                      id="roomType"
+                      onChange={handleChange}
                     />
                   </Colxx>
                 </FormGroup>

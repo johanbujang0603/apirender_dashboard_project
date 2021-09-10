@@ -21,6 +21,7 @@ import { NotificationManager } from "../common/react-notifications";
 const initialFormData = {
   fileOutputSize: null,
   outputFileType: null,
+  fileLinks: [],
 };
 
 const REFloorPlans = ({ service, orders, history }) => {
@@ -65,6 +66,7 @@ const REFloorPlans = ({ service, orders, history }) => {
     postFormData.append("serviceId", service._id);
     postFormData.append("content", JSON.stringify(formData));
 
+    console.log(formData);
     
     const config = {
       headers: {
@@ -105,6 +107,15 @@ const REFloorPlans = ({ service, orders, history }) => {
     });
   };
 
+  const fileLinkChanged = (index, e) => {
+    const data = formData;
+    data.fileLinks[index] = e.target.value.trim();
+    updateFormData({
+      ...formData,
+      fileLinks: data.fileLinks,
+    });
+  }
+
   return (
     <>
       <Row>
@@ -125,11 +136,28 @@ const REFloorPlans = ({ service, orders, history }) => {
                             <IntlMessages id="briefing.file-upload" />
                           </Label>
                           <p className="text-muted text-small">
-                            Please upload the file/s here. We accept all formats (JPEG,
+                            Please upload blueprints or detailed sketch here. We accept all formats (JPEG,
                             Tiff, ARW, PNG, PSD, CR2, etc).
                           </p>
                           <FileDropzone ref={(el) => (dropzoneRefs.current[index] = el)} planStyle={plan.name} />
                         </FormGroup>
+
+                        <FormGroup>
+                          <Label className="font-weight-bold">
+                            Link to Files
+                          </Label>
+                          <p className="text-muted text-small">
+                            Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                          </p>
+                          <Input
+                            type="text"
+                            placeholder="Enter the link to your files"
+                            name={`additionalFileLink`}
+                            id={`additionalFileLink${index}`}
+                            onChange={(e) => fileLinkChanged(index, e)}
+                          />
+                        </FormGroup>
+
                         <FormGroup row>
                           <Colxx sm={4}>
                             <Label className="font-weight-bold">Property Address</Label>

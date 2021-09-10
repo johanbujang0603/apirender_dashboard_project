@@ -267,7 +267,7 @@ const REFloorPlans = ({ service, orders, downloads, brief, backupNotes }) => {
                       {
                         planStyles.map((plan, planIndex) => {
                           return (
-                            <Row key={planIndex}>
+                            <Row key={planIndex} className="mb-5">
                               <Colxx sm="12">
                                 <Label className="text-primary">{plan.name}</Label>
                               </Colxx>
@@ -289,20 +289,20 @@ const REFloorPlans = ({ service, orders, downloads, brief, backupNotes }) => {
                                     )
                                 }})
                               }
+                              <Colxx sm="12">
+                                {
+                                  brief.fileLinks && brief.fileLinks[planIndex] && (
+                                    <Colxx sm="12">
+                                      <span className="text-danger font-weight-bold">File Link:</span>&nbsp;
+                                      <a className="text-primary" href={brief.fileLinks[planIndex]} target="_blank">{brief.fileLinks[planIndex]}</a>
+                                    </Colxx>
+                                  )
+                                }
+                              </Colxx>
                           </Row>
                           )
                         })
                       }
-                      <Row>
-                        {
-                          brief.additionalFileLink && (
-                            <Colxx sm="12">
-                              <span className="text-danger font-weight-bold">File Link:</span>&nbsp;
-                              <a className="text-primary" href={brief.additionalFileLink} target="_blank">{brief.additionalFileLink}</a>
-                            </Colxx>
-                          )
-                        }
-                      </Row>
                     </CardBody>
                   </Colxx>
                 </Row>

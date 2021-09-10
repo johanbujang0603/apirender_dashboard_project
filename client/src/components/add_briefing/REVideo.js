@@ -112,6 +112,7 @@ const REVideo = ({ service, history }) => {
                   <p className="text-muted text-small">
                     Upload up to 5 minutes of video footage in any video file format (MOV, AVI, MP4, WMV, etc.) &nbsp;
                     Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
+                    Please also include your company logo file if you would like it to appear at the end of your video.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>

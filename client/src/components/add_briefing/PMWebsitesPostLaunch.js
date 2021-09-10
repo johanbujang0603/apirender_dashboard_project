@@ -11,7 +11,7 @@ import {
   Input,
   CardBody,
   CustomInput,
-Spinner
+  Spinner
 } from "reactstrap";
 import Select from 'react-select';
 import { Colxx } from "../common/CustomBootstrap";

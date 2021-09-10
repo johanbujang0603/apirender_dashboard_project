@@ -201,6 +201,7 @@ export const services = {
     {
       id: 12,
       name: "Property Microsites",
+      desc: "Property Microsties are great for creating an online open-home for your sales or rental listings. They include up to 7 sections (i.e. Gallery, Video, Location, etc.) in a lading page format",
       img: "/assets/img/services/real_estate_marketing/property_microsites.png",
       itemsType: "SELECT_MULTIPLE",
       value: "RE_PROPERTY_MICROSITES",
@@ -208,6 +209,7 @@ export const services = {
     {
       id: 13,
       name: "Real Estate Copywriting",
+      desc: "Save time by letting us take care of the copywriting for your sales and rental listing. Our Australian-based team of professional copywriters have more than 12 years of experience in creative writing for the real estate industry.",
       img: "/assets/img/services/real_estate_marketing/copywriting.png",
       itemsType: "SELECT_MULTIPLE",
       value: "RE_COPYWRITING",
@@ -749,7 +751,7 @@ export const options = {
             "Commercial: Suitable for images of office space, meeting rooms, cafes, etc.",
           value: "PR_360_IMAGE_ENHANCEMENT_VIRTUAL_FURNITURE_COMMERCIAL",
           example_link:
-            "https://apirender-dashboard-bucket-2020-sep.s3.ap-southeast-2.amazonaws.com/examples/LINK_DOC.docx",
+            "https://tours.propertyrender.com/share/7Z1mG?fs=1&vr=1&thumbs=3&info=0&logo=-1",
         },
       ],
     },
@@ -962,7 +964,7 @@ export const options = {
             "Commercial: Suitable for images of office space, meeting rooms, cafes, etc.",
           value: "RE_360_IMAGE_ENHANCEMENT_VIRTUAL_FURNITURE_COMMERCIAL",
           example_link:
-            "https://apirender-dashboard-bucket-2020-sep.s3.ap-southeast-2.amazonaws.com/examples/LINK_DOC.docx",
+            "https://tours.propertyrender.com/share/7Z1mG?fs=1&vr=1&thumbs=3&info=0&logo=-1",
         },
       ],
     },
@@ -1129,7 +1131,7 @@ export const options = {
       value: "RE_VIRTUAL_STAGING_COMMERCIAL",
       price: 120.0,
       example_link:
-        "https://tours.propertyrender.com/share/7Z1mG?fs=1&vr=1&sd=1&thumbs=1&chromeless=1&logo=0",
+        "https://tours.propertyrender.com/share/7Z1mG?fs=1&vr=1&thumbs=3&info=0&logo=-1",
     },
   ],
   RE_MOTION_PICTURE: [
@@ -1237,7 +1239,7 @@ export const options = {
   ],
   RE_PROPERTY_MICROSITES: [
     {
-      name: "Property Microsite (Includes 6 Sections)",
+      name: "Property Microsite (Includes 7 Sections)",
       price: 600,
       value: "PROPERTY_MICROSITE_6_SECTIONS",
     },

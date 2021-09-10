@@ -10,16 +10,28 @@ import {
   Form,
   Input,
   CustomInput,
-CardBody,
+  CardBody,
   Spinner
 } from "reactstrap";
+import Select from 'react-select';
 import { Colxx } from "../common/CustomBootstrap";
+import CustomSelectInput from '../common/CustomSelectInput';
 import IntlMessages from "../../helpers/IntlMessages";
 import FileDropzone from "../common/FileDropzone";
 import { NotificationManager } from "../common/react-notifications";
 
+const sectionOptions = [
+  { value: 'Description/Overview', label: 'Description/Overview' },
+  { value: 'Photos/Gallery', label: 'Photos/Gallery' },
+  { value: 'Floor Plan', label: 'Floor Plan' },
+  { value: 'Location', label: 'Location' },
+  { value: 'Contact', label: 'Contact' },
+  { value: 'The Agent', label: 'The Agent' },
+  { value: 'Video', label: 'Video' }
+]
+
 const initialFormData = {
-  section: null,
+  sections: null,
   website: null,
   propertyAddress: null,
   propertyInformation: null,
@@ -99,6 +111,13 @@ const RePropertyMicrosites = ({ service, history }) => {
     });
   };
 
+  const handleMultipleSelect = (data, name) => {
+    updateFormData({
+      ...formData,
+      [name]: data.map((d) => d.value).join(),
+    });
+  };
+
   return (
     <>
       <Row>
@@ -112,8 +131,8 @@ const RePropertyMicrosites = ({ service, history }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                    Please upload existing marketing visuals, company logos and other content here.
-                    If your company or project has existing logos, branding or style guides please upload here too. &nbsp;
+                    Please upload existing marketing visuals and property information, company logos and other content here.
+                    If your company or project has existing, branding or style guides please upload here too. &nbsp;
                     Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
@@ -138,22 +157,18 @@ const RePropertyMicrosites = ({ service, history }) => {
                     Sections
                   </Label>
                   <p className="text-small text-muted">To assist with the website design, please select the sections that you would like to include. Note that names are customisable.</p>
-                  <Input
-                    type="select"
-                    onChange={handleChange}
-                    defaultValue=""
-                    name="section"
-                    id="section"
-                  >
-                    <option value="" disabled></option>
-                    <option value="Description/Overview">Description/Overview</option>
-                    <option value="Photos/Gallery">Photos/Gallery</option>
-                    <option value="Floor Plan">Floor Plan</option>
-                    <option value="Location">Location</option>
-                    <option value="Contact">Contact</option>
-                    <option value="The Agent">The Agent</option>
-                    <option value="Video">Video</option>
-                  </Input>
+                  
+                  <Select
+                    components={{ Input: CustomSelectInput }}
+                    className="react-select"
+                    classNamePrefix="react-select"
+                    isMulti
+                    name="sections"
+                    onChange={(selectedOptions) => {
+                      handleMultipleSelect(selectedOptions, "sections");
+                    }}
+                    options={sectionOptions}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label className="font-weight-bold">
@@ -174,8 +189,11 @@ const RePropertyMicrosites = ({ service, history }) => {
                 
                 <FormGroup>
                   <Label className="font-weight-bold">
-                    Property Address
+                    Text
                   </Label>
+                  <p className="text-small text-muted">
+                    If not provided in the file upload section above, please provide a description of the property to be used on the property microsite.
+                  </p>
                   <Input
                     type="textarea"
                     placeholder=""

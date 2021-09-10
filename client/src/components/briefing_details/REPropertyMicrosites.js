@@ -89,13 +89,13 @@ const REPropertyMicrosites = ({ service, orders, downloads, brief, backupNotes }
                       <Row>
                         <Colxx sm="12">
                           {
-                            brief.section && (
+                            brief.sections && (
                               <p className="m-0 pt-3 pb-2 d-flex align-items-center border-dotted-bottom">
                                 <span className="text-theme-1 font-weight-bold">
-                                  Section
+                                  Sections
                                 </span>
                                 <span className="ml-auto">
-                                {brief.section}
+                                {brief.sections}
                                 </span>
                               </p>
                             )
