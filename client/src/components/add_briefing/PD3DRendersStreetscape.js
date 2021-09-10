@@ -117,12 +117,9 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                   </Label>
                   <p className="text-muted text-small">
                     Please upload the file/s here. We can accept CAD (.dwg),
-                    PDF, JPEG, or a sketch. Please include Floor Plans,
+                    PDF, JPEG, or a sketch. Please include floor plans,
                     sectionals, roof plans, elevations and materials list if
-                    possible. We can also work from a detailed brief, sketches
-                    and examples; however CAD files will always result in a more
-                    accurate final 3D Render. &nbsp;
-                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
+                    possible. &nbsp; Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />
                 </FormGroup>
@@ -166,7 +163,9 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                     <Label className="font-weight-bold">
                       <IntlMessages id="briefing.select-mood-time-of-day" />
                     </Label>
-                    <p className="static-height"></p>
+                    <p className="text-small text-muted static-height">
+                      Please select the time of day for your render.
+                    </p>
                     <Input
                       type="select"
                       onChange={handleChange}
@@ -181,6 +180,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       </option>
                       <option value="Twilight/Dusk">Twilight/Dusk</option>
                       <option value="Night Time">Night Time</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -204,6 +204,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       <option value="Rear Center">Rear Center</option>
                       <option value="Rear Left">Rear Left</option>
                       <option value="Rear Right">Rear Right</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -228,6 +229,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -263,6 +265,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                         Other - Include notes in 'Additional Information'
                         section below.
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -294,6 +297,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -319,6 +323,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       <option value="Motor Boat & Trailer">
                         Motor Boat & Trailer
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -350,6 +355,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       <option value="No Fencing">No Fencing</option>
                       <option value="Picket Fence">Picket Fence</option>
                       <option value="Steel Panel">Steel Panel</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -377,6 +383,7 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -512,9 +519,6 @@ const PD3DRendersStreetscape = ({ service, orders, history }) => {
                   <Label className="font-weight-bold">
                     <IntlMessages id="briefing.additional-information" />
                   </Label>
-                  <p className="text-small text-muted">
-                    <IntlMessages id="briefing.additional-information-description" />
-                  </p>
                   <Input
                     type="textarea"
                     placeholder="Enter instructions here (optional)"

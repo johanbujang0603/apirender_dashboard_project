@@ -192,6 +192,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Smooth & Seductive (Night Time)">
                         Smooth & Seductive (Night Time)
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -223,6 +224,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes inBrief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -248,6 +250,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Motor Boat & Trailer">
                         Motor Boat & Trailer
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -285,6 +288,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Smooth & Seductive (Night Time)">
                         Smooth & Seductive (Night Time)
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -316,6 +320,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes inBrief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -347,6 +352,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -374,6 +380,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Motor Boat & Trailer">
                         Motor Boat & Trailer
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -402,6 +409,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="No Fencing">No Fencing</option>
                       <option value="Picket Fence">Picket Fence</option>
                       <option value="Steel Panel">Steel Panel</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -429,6 +437,7 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -437,9 +446,6 @@ const PD3DInteriorRenders360Degree = ({ service, orders, history }) => {
                   <Label className="font-weight-bold">
                     <IntlMessages id="briefing.additional-information" />
                   </Label>
-                  <p className="text-small text-muted">
-                    <IntlMessages id="briefing.additional-information-description" />
-                  </p>
                   <Input
                     type="textarea"
                     placeholder="Enter instructions here (optional)"

@@ -193,6 +193,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Bright & Airy (Day Time)">Bright & Airy (Day Time)</option>
                       <option value="Soft & Soothing (Twlight)">Soft & Soothing (Twlight)</option>
                       <option value="Smooth & Seductive (Night Time)">Smooth & Seductive (Night Time)</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -216,6 +217,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Rear Center">Rear Center</option>
                       <option value="Rear Left">Rear Left</option>
                       <option value="Rear Right">Rear Right</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -237,6 +239,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Mid-Level">Mid-Level</option>
                       <option value="Aerial">Aerial</option>
                       <option value="Other - Include notes in Brief Submission Section">Other - Include notes in Brief Submission Section</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -265,6 +268,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Built - Deck, Paving, Stones, etc">Built - Deck, Paving, Stones, etc</option>
                       <option value="Flower Beds">Flower Beds</option>
                       <option value="Other - Include notes in Brief Submission Section">Other - Include notes inBrief Submission Section</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -290,6 +294,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Stone">Stone</option>
                       <option value="Bitumen">Bitumen</option>
                       <option value="Other - Include notes in Brief Submission Section">Other - Include notes in Brief Submission Section</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -313,6 +318,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Luxury Vehicle">Luxury Vehicle</option>
                       <option value="Motorbike">Motorbike</option>
                       <option value="Motor Boat & Trailer">Motor Boat & Trailer</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -340,6 +346,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="No Fencing">No Fencing</option>
                       <option value="Picket Fence">Picket Fence</option>
                       <option value="Steel Panel">Steel Panel</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -363,6 +370,7 @@ const PD3DExteriorRenders360Degree = ({ service, orders, history }) => {
                       <option value="Brick">Brick</option>
                       <option value="Wall-Mounted">Wall-Mounted</option>
                       <option value="Other - Include notes in Brief Submission Section">Other - Include notes in Brief Submission Section</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">

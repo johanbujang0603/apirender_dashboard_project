@@ -205,7 +205,7 @@ module.exports = {
     "Select the primary theme for the landscaping",
   "briefing.driveway": "Driveway",
   "briefing.driveway-description":
-    "Select the  type of driveway (if applicable)",
+    "Select the  type of driveway",
   "briefing.vehicles": "Vehicles",
   "briefing.vehicles-description":
     "Select the vehicle you wish to have parked in the driveway.",

@@ -217,15 +217,6 @@ export const services = {
   ],
   PROPERTY_DEVELOPMENT: [
     {
-      id: 1,
-      name: "Aerial Editing",
-      desc: "Professional photo retouching for aerial/drone images.",
-      price: 2.8,
-      currency: "AUD",
-      img: "/assets/img/services/property_development/aerial_editing.png",
-      value: "PD_AERIAL_EDITING",
-    },
-    {
       id: 2,
       name: "3D Exterior Renders",
       img: "/assets/img/services/property_development/3D_Exterior_Renders.png",
@@ -297,13 +288,6 @@ export const services = {
       img: "/assets/img/services/property_development/premium_renders.png",
       is_free: true,
       value: "PD_PREMIUM_RENDERS",
-    },
-    {
-      id: 12,
-      name: "Commerical Floor Plans",
-      desc: ``,
-      img: "/assets/img/services/property_development/Commercial_Floor_Plans.png",
-      value: "PD_COMMERCIAL_FLOOR_PLANS",
     },
     {
       id: 13,
@@ -1863,7 +1847,7 @@ export const options = {
   ],
   PD_FLOOR_PLAN_RENDERS: [
     {
-      name: 'Number of levels',
+      name: 'Select the name of floors/level in the property.',
       is_collapse: false,
       first_price: 350,
       price: 250,

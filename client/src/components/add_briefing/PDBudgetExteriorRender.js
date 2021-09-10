@@ -160,6 +160,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Smooth & Seductive (Night Time)">
                         Smooth & Seductive (Night Time)
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -183,6 +184,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Rear Center">Rear Center</option>
                       <option value="Rear Left">Rear Left</option>
                       <option value="Rear Right">Rear Right</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -206,6 +208,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -240,6 +243,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes inBrief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -271,6 +275,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -296,6 +301,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Motor Boat & Trailer">
                         Motor Boat & Trailer
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                 </FormGroup>
@@ -327,6 +333,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="No Fencing">No Fencing</option>
                       <option value="Picket Fence">Picket Fence</option>
                       <option value="Steel Panel">Steel Panel</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -354,6 +361,7 @@ const PDBudgetExteriorRender = ({ service, orders, history }) => {
                       <option value="Other - Include notes in Brief Submission Section">
                         Other - Include notes in Brief Submission Section
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">

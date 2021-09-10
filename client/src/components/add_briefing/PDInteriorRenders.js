@@ -417,7 +417,9 @@ const PDInteriorRenders = ({ service, orders, history }) => {
                     <Label className="font-weight-bold">
                       <IntlMessages id="briefing.select-mood-time-of-day" />
                     </Label>
-                    <p className="static-height"></p>
+                    <p className="text-small text-muted static-height">
+                      Select time of day for the renders.
+                    </p>
                     <Input
                       type="select"
                       onChange={handleChange}
@@ -435,6 +437,7 @@ const PDInteriorRenders = ({ service, orders, history }) => {
                       <option value="Smooth & Seductive (Night Time)">
                         Smooth & Seductive (Night Time)
                       </option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -458,6 +461,7 @@ const PDInteriorRenders = ({ service, orders, history }) => {
                       <option value="Rear Center">Rear Center</option>
                       <option value="Rear Left">Rear Left</option>
                       <option value="Rear Right">Rear Right</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -499,9 +503,6 @@ const PDInteriorRenders = ({ service, orders, history }) => {
                   <Label className="font-weight-bold">
                     <IntlMessages id="briefing.additional-information" />
                   </Label>
-                  <p className="text-small text-muted">
-                    <IntlMessages id="briefing.additional-information-description" />
-                  </p>
                   <Input
                     type="textarea"
                     placeholder="Enter instructions here (optional)"

@@ -153,7 +153,8 @@ const PD2DRendersExteriorElevation = ({ service, orders, history }) => {
                       <option value="Hedges">Hedges</option>
                       <option value="Built - Deck, Paving, Stones, etc">Built - Deck, Paving, Stones, etc</option>
                       <option value="Flower Beds">Flower Beds</option>
-                      <option value="Other - Include notes in Brief Submission Section">Other - Include notes inBrief Submission Section</option>
+                      <option value="Other - Include notes in Brief Submission Section">Other - Include notes in Brief Submission Section</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">
@@ -179,6 +180,7 @@ const PD2DRendersExteriorElevation = ({ service, orders, history }) => {
                       <option value="Stone">Stone</option>
                       <option value="Bitumen">Bitumen</option>
                       <option value="Other - Include notes in Brief Submission Section">Other - Include notes in Brief Submission Section</option>
+                      <option value="Not Sure">Not Sure</option>
                     </Input>
                   </Colxx>
                   <Colxx sm="4">

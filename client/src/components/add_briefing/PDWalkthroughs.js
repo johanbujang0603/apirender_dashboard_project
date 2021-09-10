@@ -110,8 +110,6 @@ const PDWalkthroughs = ({ service, orders, history }) => {
                     Please upload files here. We accept all files types (.DWG, PDF, JPEG, etc.).
                     Provide as much information about the project as possible so that we can produce an accurate representation.
                     If possible, include floor plans, sectionals, roof plans, elevations, landscape plans, and materials list.
-                    We can also work from a detailed brief, sketches and examples;
-                    however construction drawings will always result in a more accurate virtual reality experience.
                     <br />
                     Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
