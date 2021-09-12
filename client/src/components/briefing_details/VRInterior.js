@@ -116,6 +116,34 @@ const VRInterior = ({
                           <p className="mb-3 pt-3 pb-2">{ brief.architecturealBlueprints && brief.architecturealBlueprints }</p>
                           <p className="border-dotted-bottom"></p>
                         </Colxx>
+                        <Colxx sm="12">
+                          {brief.finalRequirements && (
+                            <>
+                              <p className="m-0 pt-3 pb-2">
+                                <span className="text-theme-1 font-weight-bold">
+                                  <IntlMessages id="briefing.final-requirements" />
+                                </span>
+                              </p>
+                              <p className="border-dotted-bottom pb-2 m-0">
+                                {brief.finalRequirements}
+                              </p>
+                            </>
+                          )}
+                        </Colxx>
+                        <Colxx sm="12">
+                          {brief.contactMethod && (
+                            <>
+                              <p className="m-0 pt-3 pb-2 d-flex align-items-center border-dotted-bottom">
+                                <span className="text-theme-1 font-weight-bold">
+                                  Contact Method
+                                </span>
+                                <span className="ml-auto">
+                                  {brief.contactMethod}
+                                </span>
+                              </p>
+                            </>
+                          )}
+                        </Colxx>
                       </Row>
                     </CardBody>
                   </Colxx>

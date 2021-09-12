@@ -36,7 +36,7 @@ const PSCorfulteSign = ({ service, orders, history, project }) => {
       console.log("completed");
       setLoading(false);
       clearInterval(intervalId.current)
-      history.push(`/thank-you/briefing/${service._id}`);
+      history.push(`/thank-you/briefing/${service._id}?printing=true`);
     }
   }, [uploadProgress, s3UploadPorgress])
 

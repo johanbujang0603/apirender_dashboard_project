@@ -103,6 +103,22 @@ const PMWebsitesLandingPage = ({ service, orders, downloads, brief, backupNotes 
                         </Colxx>
                         <Colxx sm="12">
                           {
+                            brief.sections.length !== 0 && (
+                              <>
+                              <p className="m-0 pt-3 pb-2">
+                                <span className="text-theme-1 font-weight-bold">
+                                  <IntlMessages id="briefing.sections" />
+                                </span>
+                              </p>
+                              <p className="border-dotted-bottom pb-2 m-0">
+                                {brief.sections.map(a => a.value).toString()}
+                              </p>
+                              </>
+                            )
+                          }
+                        </Colxx>
+                        <Colxx sm="12">
+                          {
                             brief.contactMethod && (
                               <p className="m-0 pt-3 pb-2 d-flex align-items-center border-dotted-bottom">
                                 <span className="text-theme-1 font-weight-bold">

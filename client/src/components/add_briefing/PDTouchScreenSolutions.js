@@ -143,7 +143,7 @@ const PDTouchScreenSolutions = ({ service, history }) => {
                     <option value="" disabled></option>
                     <option value="Apartments">Apartments</option>
                     <option value="Houses">Houses</option>
-                    <option value="Commercial Porperty">Commercial Porperty</option>
+                    <option value="Commercial Property">Commercial Property</option>
                     <option value="Villas">Villas</option>
                     <option value="Other">Other</option>
                   </Input>

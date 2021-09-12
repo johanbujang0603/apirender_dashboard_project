@@ -31,21 +31,27 @@ const initialFormData = {
   companyStory: null,
   brand3Links: null,
   interactionCustomer: null,
+  additionalFileLink: null,
   specificGuidelines: null
 };
 
 const PMBrandDevelopment = ({ service, history }) => {
+  const dropzone = useRef();
+  let intervalId = useRef(null)
+
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [s3UploadPorgress, setS3UploadProgress] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formData, updateFormData] = React.useState(initialFormData);
 
   useEffect(() => {
-    if (uploadProgress >= 100) {
+    if (uploadProgress + s3UploadPorgress === 200) {
       console.log("completed");
       setLoading(false);
+      clearInterval(intervalId.current)
       history.push(`/thank-you/briefing/${service._id}`);
     }
-  }, [uploadProgress])
+  }, [uploadProgress, s3UploadPorgress])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,6 +59,8 @@ const PMBrandDevelopment = ({ service, history }) => {
 
     const postFormData = new FormData();
     
+    const files = dropzone.current.myDropzone.files;
+    files.forEach((file) => { postFormData.append("basic", file)});
     postFormData.append("serviceId", service._id);
     postFormData.append("content", JSON.stringify(formData));
 
@@ -72,7 +80,9 @@ const PMBrandDevelopment = ({ service, history }) => {
     axios
       .post(`/api/briefing/save`, postFormData, config)
       .then((res) => {
-        console.log(res.data)
+        intervalId.current = setInterval(() => {
+          getFileStatus();
+        }, 2000)
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -86,6 +96,13 @@ const PMBrandDevelopment = ({ service, history }) => {
       [e.target.name]: e.target.value.trim(),
     });
   };
+
+  const getFileStatus = () => {
+    axios.get(`/api/briefing/file-status?service_id=${service._id}`)
+      .then((res) => {
+        setS3UploadProgress(res.data.progress);
+      })
+  }
 
   return (
     <>
@@ -200,7 +217,7 @@ const PMBrandDevelopment = ({ service, history }) => {
                   </Colxx>
                   <Colxx sm={6}>
                     <Label className="font-weight-bold">
-                      Who are your company’s top three competitors?
+                      Who are your company’s or projects top three competitors?
                     </Label>
                     <Input
                       type="textarea"
@@ -268,7 +285,7 @@ const PMBrandDevelopment = ({ service, history }) => {
                 <FormGroup row>
                   <Colxx sm={6}>
                     <Label className="font-weight-bold">
-                      Do you have specific guidelines ( do’s and don’ts ) about the colors and other elements of your brand identity?
+                      Do you have specific guidelines ( do's and dont's ) about the colors and other elements of your brand identity?
                     </Label>
                     <Input
                       type="textarea"
@@ -290,6 +307,32 @@ const PMBrandDevelopment = ({ service, history }) => {
                       onChange={handleChange}
                     />
                   </Colxx>
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    <IntlMessages id="briefing.file-upload" />
+                  </Label>
+                  <p className="text-muted text-small">
+                    Please upload any files that you think will assist with the creation of your brand development (i.e. competitor branding, inspirations, reference images, etc.)
+                    <br />
+                    Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
+                  </p>
+                  <FileDropzone ref={dropzone} />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Link to Files
+                  </Label>
+                  <p className="text-muted text-small">
+                    Alternatively, please provide a link to your image files. Popular services include Dropbox, WeTransfer, Google Driver, etc.
+                  </p>
+                  <Input
+                    type="text"
+                    placeholder="Enter the link to your files"
+                    name="additionalFileLink"
+                    id="additionalFileLink"
+                    onChange={handleChange}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Button

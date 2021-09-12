@@ -36,7 +36,7 @@ const PSBooklet = ({ service, orders, history, project }) => {
       console.log("completed");
       setLoading(false);
       clearInterval(intervalId.current)
-      history.push(`/thank-you/briefing/${service._id}`);
+      history.push(`/thank-you/briefing/${service._id}?printing=true`);
     }
   }, [uploadProgress, s3UploadPorgress])
 
@@ -108,7 +108,7 @@ const PSBooklet = ({ service, orders, history, project }) => {
                     <IntlMessages id="briefing.file-upload" />
                   </Label>
                   <p className="text-muted text-small">
-                  Upload your print-ready file here. Refer to the Product Specs and Design Guide for instructions on creating your file. &nbsp;
+                  Upload your print-ready file here. Refer to the File Preparation Guide for instructions on creating your file. &nbsp;
                   Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </p>
                   <FileDropzone ref={dropzone} />

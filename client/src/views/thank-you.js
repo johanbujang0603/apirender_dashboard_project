@@ -9,9 +9,8 @@ const Thankyou = ({match}) => {
   
   const queryParams = new URLSearchParams(window.location.search);
   const isQuote = queryParams.get("quote");
-  // const params = queryString.parse(this.props.location.search)
-
-  // console.log(params);
+  const isPrint = queryParams.get("printing");
+  
   useEffect(() => {
     setAction(match.params.action);
     document.body.classList.add('background');
@@ -58,10 +57,22 @@ const Thankyou = ({match}) => {
                     {
                       action && action === 'briefing' && isQuote !== 'true' && ( 
                         <>
-                          <p className="">Thank you, the project brief has been submitted successfully.</p>
-                          <p className="">Your order is now in progress. </p>
-                          <p className="">We will contact you if we require any further information. </p>
-                          <p className="">If you have any questions, please contact your account manager via the dashboard.</p>
+                        {
+                          isPrint === 'true' ? (
+                            <>
+                            <p className="">Thank you, the order has been submitted successfully and is now in progress.</p>
+                            <p className="">We will contact you if we require any further information. </p>
+                            <p className="">If you have any questions, please contact your account manager via the dashboard.</p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="">Thank you, the project brief has been submitted successfully.</p>
+                              <p className="">Your order is now in progress. </p>
+                              <p className="">We will contact you if we require any further information. </p>
+                              <p className="">If you have any questions, please contact your account manager via the dashboard.</p>
+                            </>
+                          )
+                        }
                         </> 
                       )
                     }

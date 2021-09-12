@@ -43,6 +43,8 @@ const initialFormData = {
 };
 
 const PMWebsitesPostLaunch = ({ service, orders, history }) => {
+
+  console.log(orders);
   const dropzone = useRef();
   let intervalId = useRef(null)
 
@@ -164,7 +166,7 @@ const PMWebsitesPostLaunch = ({ service, orders, history }) => {
                     </Label>
                     <p className="text-muted text-small">
                       Please upload your company and/or project logo (preferred file format is PNG).
-                      If you have a company or project style/branding guide, please also upload this document so that we can create a commercial floor plan template consistent with your branding.
+                      If you have a company or project style/branding guide, please also upload this document above too.
                     </p>
                   </Colxx>
                   <Colxx sm={6}>

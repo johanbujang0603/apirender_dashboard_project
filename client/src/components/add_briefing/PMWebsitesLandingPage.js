@@ -11,12 +11,28 @@ import {
   Input,
   CardBody,
   CustomInput,
-Spinner
+  Spinner
 } from "reactstrap";
+import Select from 'react-select';
 import { Colxx } from "../common/CustomBootstrap";
 import IntlMessages from "../../helpers/IntlMessages";
 import FileDropzone from "../common/FileDropzone";
+import CustomSelectInput from '../common/CustomSelectInput';
 import { NotificationManager } from "../common/react-notifications";
+
+const sectionsData = [
+  { label: 'Project Overview', value: 'Project Overview', key: 0 },
+  { label: 'The Developer / Team', value: 'The Developer / Team', key: 1 },
+  { label: 'Contact', value: 'Contact', key: 2 },
+  { label: 'Partners', value: 'Partners', key: 3 },
+  { label: 'Design', value: 'Design', key: 4 },
+  { label: 'Location / Lifestyle', value: 'Location / Lifestyle', key: 5 },
+  { label: 'Floor Plans', value: 'Floor Plans', key: 6 },
+  { label: 'Video', value: 'Video', key: 7 },
+  { label: 'Gallery', value: 'Gallery', key: 8 },
+  { label: 'Master Plan', value: 'Master Plan', key: 9 },
+  { label: 'News', value: 'News', key: 10 },
+];
 
 const initialFormData = {
   contactMethod: null,
@@ -24,6 +40,14 @@ const initialFormData = {
   notes: null,
   additionalFileLink: null
 };
+
+const checkSections = (orders) => {
+  let count = false;
+  orders.map((order) => {
+    if (order.value === "PM_WEBSITES_LANDING_PAGE_4SECTIONS") count = true;
+  })
+  return count;
+}
 
 const PMWebsitesLandingPage = ({ service, orders, history }) => {
   const dropzone = useRef();
@@ -92,6 +116,13 @@ const PMWebsitesLandingPage = ({ service, orders, history }) => {
     updateFormData({
       ...formData,
       [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleMultipleSelect = (data, name) => {
+    updateFormData({
+      ...formData,
+      [name]: data,
     });
   };
 
@@ -166,6 +197,30 @@ const PMWebsitesLandingPage = ({ service, orders, history }) => {
                     </div>
                   </Colxx>
                 </FormGroup>
+                {
+                  checkSections() === true && (
+                    <FormGroup>
+                      <Label className="font-weight-bold">
+                        Sections
+                      </Label>
+                      <p className="text-small text-muted">
+                        To assist with the website design, please select the sections that you would like included on your website.
+                        Section names can be changed, these are just for reference.
+                      </p>
+                      <Select
+                        components={{ Input: CustomSelectInput }}
+                        className="react-select"
+                        classNamePrefix="react-select"
+                        isMulti
+                        name="sections"
+                        onChange={(selectedOptions) => {
+                          handleMultipleSelect(selectedOptions, "sections");
+                        }}
+                        options={sectionsData}
+                      />
+                    </FormGroup>
+                  )
+                }
                 <FormGroup>
                   <Label className="font-weight-bold">
                     Contact Preference

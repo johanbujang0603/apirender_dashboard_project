@@ -10,6 +10,7 @@ import {
   Form,
   Input,
   CardBody,
+  CustomInput,
   Spinner
 } from "reactstrap";
 import Select from "react-select";
@@ -23,7 +24,9 @@ import { roomTypes } from "../../constants/photoRetouchingValues";
 
 const initialFormData = {
   architecturealBlueprints: null,
-  additionalFileLink: null
+  additionalFileLink: null,
+  finalRequirements: null,
+  contactMethod: null
 };
 
 const VRInterior = ({ service, history }) => {
@@ -116,7 +119,7 @@ const VRInterior = ({ service, history }) => {
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label className="font-weight-bold">
-                    Please upload a high resolution photo of the exterior space in which the renovation will be completed. &nbsp;
+                    Please upload a high resolution photo of the interior space in which the renovation will be completed. &nbsp;
                     Max upload limit is 256 MB. If your files exceed this limit, please provide a link to your files in the section below.
                   </Label>
                   <Row>
@@ -154,16 +157,58 @@ const VRInterior = ({ service, history }) => {
                   <Label className="font-weight-bold">
                     Select the Desired Room or Space
                   </Label>
-                  <Select
-                    components={{ Input: CustomSelectInput }}
-                    className="react-select"
-                    classNamePrefix="react-select"
+                  <Input
+                    type="textarea"
+                    placeholder="Enter instructions here (optional)"
                     name="desiredRoom"
-                    onChange={(selectedOption) => {
-                      handleSelect(selectedOption.value, "desiredRoom");
-                    }}
-                    options={roomTypes}
+                    id="desiredRoom"
+                    onChange={handleChange}
                   />
+                </FormGroup>
+                
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Please provide a detailed brief for your project. We may
+                    contact you to discuss the details of your project and confirm storyline before commencing.
+                  </Label>
+                  <Input
+                    type="textarea"
+                    placeholder="Enter instructions here (optional)"
+                    name="finalRequirements"
+                    id="finalRequirements"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    How would you like us to contact you?
+                  </Label>
+                  <div>
+                    <CustomInput
+                      type="radio"
+                      id="contactMethod1"
+                      name="contactMethod"
+                      label="Email"
+                      value="Email"
+                      onChange={handleChange}
+                    />
+                    <CustomInput
+                      type="radio"
+                      id="contactMethod2"
+                      name="contactMethod"
+                      label="Phone"
+                      value="Phone"
+                      onChange={handleChange}
+                    />
+                    <CustomInput
+                      type="radio"
+                      id="contactMethod3"
+                      name="contactMethod"
+                      label="Via Dashboard Messaging"
+                      value="Via Dashboard Messaging"
+                      onChange={handleChange}
+                    />
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <Button

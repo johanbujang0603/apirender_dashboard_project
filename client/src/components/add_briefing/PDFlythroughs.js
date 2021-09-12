@@ -10,7 +10,7 @@ import {
   Form,
   Input,
   CustomInput,
-CardBody,
+  CardBody,
   Spinner
 } from "reactstrap";
 import { Colxx } from "../common/CustomBootstrap";

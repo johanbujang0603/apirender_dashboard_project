@@ -301,7 +301,7 @@ export const services = {
     {
       id: 1,
       name: "Virtual Renovation - Exterior",
-      desc: "Build your virtual renovation brief by selecting from the options below.",
+      desc: "Build your virtual renovation brief by selecting from the options below. You will have the opportunity to provide more details about your project requirements in the briefing section after submitting your order.",
       img:
         "/assets/img/services/virtual_renovation/Virtual_Renovation_Exterior.png",
       value: "VR_EXTERIOR",
@@ -310,7 +310,7 @@ export const services = {
     {
       id: 2,
       name: "Virtual Renovation - Interior",
-      desc: "Build your virtual renovation brief by selecting from the options below.",
+      desc: "Build your virtual renovation brief by selecting from the options below. You will have the opportunity to provide more details about your project requirements in the briefing section after submitting your order.",
       img:
         "/assets/img/services/virtual_renovation/Virtual_Renovation_Interior.png",
       value: "VR_INTERIOR",
@@ -319,7 +319,7 @@ export const services = {
     {
       id: 4,
       name: "Virtual Pool Construction",
-      desc: "Build your brief by selecting from the following options.",
+      desc: "Build your brief by selecting from the following options. You will have the opportunity to provide more details about your project requirements in the briefing section after submitting your order.",
       img:
         "/assets/img/services/virtual_renovation/Virtual_Pool_Construction.png",
       value: "VR_POOL_CONSTRUCTION",
@@ -345,15 +345,15 @@ export const services = {
     },
     {
       id: 4,
-      name: "DL Flyers",
-      desc: "Select from option below.",
+      name: "Flyers",
+      desc: "Please select from the following flyer sizes and options below.",
       img: "/assets/img/services/project_marketing_design_seo/DL_Flyers.png",
       value: "PM_DL_FLYERS",
     },
     {
       id: 5,
       name: "Information Booklet",
-      desc: "Select the required number of pages to be designed for your booklet",
+      desc: "Select the number of pages you would like included in your booklet.",
       img:
         "/assets/img/services/project_marketing_design_seo/Information_Booklet.png",
       value: "PM_INFO_BOOKLET",
@@ -363,6 +363,8 @@ export const services = {
       name: "Websites (Landing Page / Pre-Launch)",
       img:
         "/assets/img/services/project_marketing_design_seo/Websites(Landing_PagePre-Launch).png",
+      desc: `A pre-launch website is a great way to start generating early exposure for your project and build a database of potential buyers who register their interest on the webiste.
+              The website includes up to four sections (i.e. Description, The Developer, Location, etc.) in a landing page format.`,
       itemsType: "SELECT_MULTIPLE",
       value: "PM_WEBSITES_LANDING_PAGE",
     },
@@ -370,7 +372,7 @@ export const services = {
       id: 7,
       name: "Websites (Post-Launch)",
       desc:
-        "Select the number of sections you would like incorporated into your website. One Section is a page on the website (i.e. Location, The Opportunity, The Developer, Etc.)",
+        "A post-launch website is a complete website including several pages. Select the number of sections you would like incorporated into your website. One Section is a page on the website (i.e. Location, The Opportunity, The Developer, Etc.)",
       img:
         "/assets/img/services/project_marketing_design_seo/Websites(Post-Launch).png",
       itemsType: "SELECT_ONE",
@@ -387,7 +389,7 @@ export const services = {
     {
       id: 9,
       name: "Touch Screen Solutions",
-      desc: `Select from the touch screen solution options below to proceed to the project briefing and receive a quote of your project.`,
+      desc: `Please select your requirement below to proceed to the project briefing and receive a quote of your project.`,
       img: "/assets/img/services/property_development/Touch_Screen_Solutions.png",
       itemsType: "SELECT_MULTIPLE",
       is_free: true,
@@ -408,13 +410,13 @@ export const services = {
       id: 1,
       name: "Corflute Sign",
       img: "/assets/img/services/printing_services/Corflute_Sign.png",
-      desc: "Vivid, full-colour printing 5 mm corrugated plastic sign that is weather - & fade-resistant.",
+      desc: "Vivid, full-colour printing on 5 mm corrugated plastic that is weather and fade-resistant.",
       value: "PS_CORFLUTE_SIGN",
     },
     {
       id: 2,
       name: "Pull-up Banners",
-      desc: "Vivid, full-colour printing which single-sided display. Includes pre-assembled stand, banner & case.",
+      desc: "Vivid, full-colour printing with single-sided display. Includes pre-assembled stand, banner & case. Banner material is smooth vinyl.",
       img: "/assets/img/services/printing_services/Pull-up(Banner).png",
       value: "PS_PULL_UP_BANNERS",
     },
@@ -445,14 +447,14 @@ export const services = {
     {
       id: 6,
       name: "Flyers (25 min. Qty.)",
-      desc: "Print stylish, high quality flyers for your projects.",
+      desc: "Print stylish, high quality flyers for your projects. Printed on high-quality 250 gsm Matte paper. Optional Design Fee is per individual design.",
       img: "/assets/img/services/printing_services/DL_Flyers.png",
       value: "PS_FLYERS",
     },
     {
       id: 7,
       name: "Booklet Printing (US Only) - Min. 10 Qty.",
-      desc: "Saddle stitched (stapled binding) booklets with premium glossy cover and matte interior pages.",
+      desc: "Saddle stitched (stapled binding) booklets with premium glossy cover and matte interior pages. Booklet is Saddle stitched (stapled binding). Cover pages are printed on 100lb silk coated cover stock, and interior pages are printed on 80lb, 9.5pt silk coated paper.",
       img: "/assets/img/services/printing_services/Information_Booklet.png",
       value: "PS_BOOKLET",
     },
@@ -1857,21 +1859,27 @@ export const options = {
   ],
   PD_TOUCH_SCREEN_SOLUTIONS: [
     {
-      name: 'Touch Screen Hardware (Physical Screen)',
+      name: 'Touch Screen Monitor/Kiosk',
       price: 0,
       currency: 'AUD',
       value: 'PD_TOUCH_SCREEN_SOLUTIONS_HARDWARE',
     },
     {
-      name: 'Touch Screen interface and hardware',
+      name: 'Touch Screen Software',
       price: 0,
       currency: 'AUD',
       value: 'PD_TOUCH_SCREEN_SOLUTIONS_INTERFACE',
+    },
+    {
+      name: 'Touch Screen Software and Monitor/Kiosk',
+      price: 0,
+      currency: 'AUD',
+      value: 'PD_TOUCH_SCREEN_SOLUTIONS_SOTWARE_MONITOR',
     }
   ],
   PD_CRM_DEVELOPMENT: [
     {
-      name: 'Retirement Village Operations',
+      name: 'Retirement Village Operator',
       price: 0,
       currency: 'AUD',
       value: 'PD_CRM_DEVELOPMENT_RETIREMENT_VILLAGE_OPERATIONS',
@@ -1883,10 +1891,16 @@ export const options = {
       value: 'PD_CRM_DEVELOPMENT_REAL_ESTATE_AGENCY',
     },
     {
-      name: 'Project Marketing',
+      name: 'Project Marketer',
       price: 0,
       currency: 'AUD',
       value: 'PD_CRM_DEVELOPMENT_PROJECT_MARKETING',
+    },
+    {
+      name: 'Property Developer',
+      price: 0,
+      currency: 'AUD',
+      value: 'PD_CRM_DEVELOPMENT_PROPERTY_DEVELOPER',
     }
   ],
 
@@ -1925,7 +1939,7 @@ export const options = {
     },
     {
       name: "Change colour of house exterior (paint colour).",
-      price: 3.0,
+      price: 10.0,
       currency: "AUD",
       value: "VR_EXTERIOR_CHANGE_COLOUR_HOUSE_EXTERIOR",
     },
@@ -1987,7 +2001,7 @@ export const options = {
     },
     {
       name:
-        "Bathroom renovation including changing fixtures and fittings(i.e. benchtops, bath, shower, sink, mirror/s and tapware).",
+        "Bathroom renovation including changing fixtures and fittings (i.e. benchtops, bath, shower, sink, mirror/s and tapware).",
       price: 80.0,
       currency: "AUD",
       value: "VR_INTERIOR_BATHROOM_RENOVATION",
@@ -2033,7 +2047,7 @@ export const options = {
       value: "VR_INTERIOR_NEW_WINDOW",
     },
     {
-      name: "Flooring replacement of material/texture.",
+      name: "Flooring replacement (of material/texture).",
       price: 25.0,
       currency: "AUD",
       value: "VR_INTERIOR_FLOORING",
@@ -2180,11 +2194,44 @@ export const options = {
   ],
   PM_DL_FLYERS: [
     {
-      name: "Standard",
-      price: 1600.0,
-      currency: "AUD",
-      unit: "design",
+      name: "Single Slider Flyer",
       value: "PM_DL_FLYERS_STANDARD",
+      items: [
+        {
+          name: "DL (99 * 210 mm)",
+          value: "PM_DL_FLYERS_STANDARD_DL",
+          price: 600.0,
+          unit: "Design ",
+          currency: "AUD",
+        },
+        {
+          name: "A4 (210 * 297 mm)",
+          value: "PM_DL_FLYERS_STANDARD_A4",
+          price: 600.0,
+          unit: "Design ",
+          currency: "AUD",
+        }
+      ]
+    },
+    {
+      name: "Double Slider Flyer",
+      value: "PM_DL_FLYERS_DOUBLE",
+      items: [
+        {
+          name: "DL (99 * 210 mm)",
+          value: "PM_DL_FLYERS_DOUBLE_DL",
+          price: 1200.0,
+          unit: "Design ",
+          currency: "AUD",
+        },
+        {
+          name: "A4 (210 * 297 mm)",
+          value: "PM_DL_FLYERS_DOUBLE_A4",
+          price: 1600.0,
+          unit: "Design ",
+          currency: "AUD",
+        }
+      ]
     },
     {
       name: "Copywriting",

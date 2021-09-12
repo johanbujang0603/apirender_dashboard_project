@@ -9,7 +9,8 @@ import {
   Label,
   Form,
   Input,
-CardBody,
+  CardBody,
+  CustomInput,
   Spinner
 } from "reactstrap";
 import Select from "react-select";
@@ -21,7 +22,9 @@ import { NotificationManager } from "../common/react-notifications";
 
 const initialFormData = {
   architecturealBlueprints: null,
-  additionalFileLink: null
+  additionalFileLink: null,
+  finalRequirements: null,
+  contactMethod: null
 };
 const roomTypes = [
   {
@@ -185,6 +188,51 @@ const VRExterior = ({ service, history }) => {
                     }}
                     options={roomTypes}
                   />
+                </FormGroup>
+                
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    Please provide a detailed brief for your project. We may
+                    contact you to discuss the details of your project and confirm storyline before commencing.
+                  </Label>
+                  <Input
+                    type="textarea"
+                    placeholder="Enter instructions here (optional)"
+                    name="finalRequirements"
+                    id="finalRequirements"
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label className="font-weight-bold">
+                    How would you like us to contact you?
+                  </Label>
+                  <div>
+                    <CustomInput
+                      type="radio"
+                      id="contactMethod1"
+                      name="contactMethod"
+                      label="Email"
+                      value="Email"
+                      onChange={handleChange}
+                    />
+                    <CustomInput
+                      type="radio"
+                      id="contactMethod2"
+                      name="contactMethod"
+                      label="Phone"
+                      value="Phone"
+                      onChange={handleChange}
+                    />
+                    <CustomInput
+                      type="radio"
+                      id="contactMethod3"
+                      name="contactMethod"
+                      label="Via Dashboard Messaging"
+                      value="Via Dashboard Messaging"
+                      onChange={handleChange}
+                    />
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <Button

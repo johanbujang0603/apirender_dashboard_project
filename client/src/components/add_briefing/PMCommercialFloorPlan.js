@@ -298,7 +298,7 @@ const PMCommercialFloorPlan = ({ service, orders, history }) => {
                       <IntlMessages id="briefing.north-arrow" />
                     </Label>
                     <p className="text-small text-muted">
-                      Please whether you would like a north arrow on the plan.
+                      Select whether you would like a north arrow on the plan.
                     </p>
                     <div>
                       <CustomInput
