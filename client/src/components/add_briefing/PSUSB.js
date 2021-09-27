@@ -98,7 +98,8 @@ const PSUSB = ({ service, orders, history, project }) => {
         <Colxx md="12">
           <Card className="mb-4">
             <CardBody>
-              <h5 className="text-primary mb-5">USB Flash Drive</h5>
+              <h5 className="text-primary mb-2">USB Flash Drive</h5>
+              <p className="text-danger mb-3 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <a href="/assets/pdf/USB.pdf" download >Download File Preparation Guide.</a>

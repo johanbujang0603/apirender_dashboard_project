@@ -22,15 +22,12 @@ import {
 } from '../../redux/actions';
 
 import {
-  menuHiddenBreakpoint,
   searchPath,
   localeOptions,
-  isDarkSwitchActive,
 } from '../../constants/defaultValues';
 
 import { MobileMenuIcon, MenuIcon } from '../../components/svg';
 import TopnavEasyAccess from './Topnav.EasyAccess';
-import TopnavDarkSwitch from './Topnav.DarkSwitch';
 
 import { getDirection, setDirection } from '../../helpers/Utils';
 
@@ -212,6 +209,11 @@ const TopNav = ({
       </a>
 
       <div className="navbar-right">
+        {loginUser.role === 'customer' && (
+          <NavLink to={'/app/projects/new-project'} className="mr-5">
+            <img src={'/assets/img/start_project.png'} />
+          </NavLink>
+        )}
         <div className="user d-inline-block">
           <UncontrolledDropdown className="dropdown-menu-right">
             <DropdownToggle className="p-0" color="empty">

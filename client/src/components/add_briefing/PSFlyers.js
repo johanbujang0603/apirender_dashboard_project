@@ -22,7 +22,7 @@ const initialFormData = {
   additionalFileLink: null
 };
 
-const PSFlyers = ({ service, history, project }) => {
+const PSFlyers = ({ service, orders, history, project }) => {
   const dropzone = useRef();
   let intervalId = useRef(null)
 
@@ -98,7 +98,8 @@ const PSFlyers = ({ service, history, project }) => {
         <Colxx md="12">
           <Card className="mb-4">
             <CardBody>
-              <h5 className="text-primary mb-5">Flyers (25 min. Qty.)</h5>
+              <h5 className="text-primary mb-2">Flyers (25 min. Qty.)</h5>
+              <p className="text-danger mb-3 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <a href="/assets/pdf/FLYERS.pdf" download >Download File Preparation Guide.</a>

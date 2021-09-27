@@ -22,7 +22,7 @@ const initialFormData = {
   additionalFileLink: null
 };
 
-const PSNameTags = ({ service, history, project }) => {
+const PSNameTags = ({ service, orders, history, project }) => {
   const dropzone = useRef();
   let intervalId = useRef(null)
 
@@ -98,7 +98,8 @@ const PSNameTags = ({ service, history, project }) => {
         <Colxx md="12">
           <Card className="mb-4">
             <CardBody>
-              <h5 className="text-primary mb-5">Name Tags</h5>
+              <h5 className="text-primary mb-2">Name Tags</h5>
+              <p className="text-danger mb-3 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <a href="/assets/pdf/NAME_TAG.pdf" download >Download File Preparation Guide.</a>

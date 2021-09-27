@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { injectIntl } from "react-intl";
 import axios from "axios";
-import { Row, Button, FormGroup, Label, Card, CardBody } from "reactstrap";
+import { Row, Button, FormGroup, Label, Card, CardBody, Badge } from "reactstrap";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import IntlMessages from "../../../helpers/IntlMessages";
 
@@ -108,7 +108,7 @@ const BriefingDetails = ({ intl, match, history }) => {
       .then((data) => {
         NotificationManager.success(
           "The service has been completed!.",
-          "Congratulation!",
+          "Congratulations!",
           3000,
           null,
           null,
@@ -141,36 +141,41 @@ const BriefingDetails = ({ intl, match, history }) => {
               </span>
             </h1>
             <div className="ml-auto text-zero top-right-button-container">
-              {backupNotes && (
-                <Button
-                  className="top-right-button btn btn-primary btn-lg"
-                  onClick={confirmService}
-                >
-                  Mark as Complete
-                </Button>
-              )}
+              {
+                service.status === "COMPLETED" ? (
+                  <Badge color="success">Marked As Completed</Badge>
+                ) : (  
+                  <Button
+                    color="primary"
+                    className="top-right-button"
+                    onClick={confirmService}
+                  >
+                    Mark as Complete
+                  </Button>
+                )
+              }
             </div>
           </div>
           <Separator className="mb-5" />
         </Colxx>
       </Row>
       {service.value === "PR_REAL_ESTATE_PHOTO_RETOUCHING" && (
-        <PRPhotoRetouching orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PRPhotoRetouching orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PR_PORTRAIT_RETOUCHING" && (
-        <PRPortraitRetouching orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PRPortraitRetouching orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PR_DAY_TO_DUSK" && (
-        <PRDayToDusk orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PRDayToDusk orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PR_AERIAL_EDITING" && (
-        <PRAerialEditing orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PRAerialEditing orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PR_360_IMAGE_ENHANCEMENT" && (
-        <PRImageEnhancement orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PRImageEnhancement orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PR_VIRTUAL_FURNITURE" && (
-        <PRVirtualFurniture orders={orders} service={service} downloads={downloads} brief={brief} />
+        <PRVirtualFurniture orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} />
       )}
 
 
@@ -178,43 +183,43 @@ const BriefingDetails = ({ intl, match, history }) => {
 
 
       {service.value === "RE_REAL_ESTATE_PHOTO_RETOUCHING" && (
-        <REPhotoRetouching orders={orders} service={service} downloads={downloads} brief={brief} />
+        <REPhotoRetouching orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} />
       )}
       {service.value === "RE_DAY_TO_DUSK" && (
-        <REDayToDusk orders={orders} service={service} downloads={downloads} brief={brief} />
+        <REDayToDusk orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} />
       )}
       {service.value === "RE_AERIAL_EDITING" && (
-        <REAerialEditing orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REAerialEditing orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_360_IMAGE_ENHANCEMENT" && (
-        <REImageEnhancement orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REImageEnhancement orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_FLOOR_PLANS" && (
-        <REFloorPlans orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REFloorPlans orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_VIRTUAL_TOUR" && (
-        <REVirtualTour orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REVirtualTour orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_VIRTUAL_STAGING" && (
-        <REVirtualStaging orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REVirtualStaging orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_360_VIRTUAL_STAGING" && (
-        <RE360VirtualStaging orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <RE360VirtualStaging orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_MOTION_PICTURE" && (
-        <REMotionPicture orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REMotionPicture orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_VIDEO" && (
-        <REVideo orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REVideo orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_SLIDE_SHOWS" && (
-        <RESlideshows orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <RESlideshows orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_PROPERTY_MICROSITES" && (
-        <REPropertyMicrosites orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <REPropertyMicrosites orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "RE_COPYWRITING" && (
-        <RECopywriting orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <RECopywriting orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
 
 
@@ -222,54 +227,54 @@ const BriefingDetails = ({ intl, match, history }) => {
 
 
       {service.value === "PD_AERIAL_EDITING" && (
-        <PDAerialEditing orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDAerialEditing orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_3D_EXTERIOR_RENDERS" && (
-        <PD3DExteriorRenders orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PD3DExteriorRenders orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_INTERIOR_RENDERS" && (
-        <PDInteriorRenders orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDInteriorRenders orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
 
       {service.value === "PD_3D_RENDERS_STREETSCAPE" && (
-        <PD3DRendersStreetscape orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PD3DRendersStreetscape orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_3D_RENDERS_AERIAL_RENDER" && (
-        <PD3DRendersAerial orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PD3DRendersAerial orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_3D_INTERIOR_RENDERS_360_DEGREE" && (
-        <PD3DInteriorRenders360Degree orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PD3DInteriorRenders360Degree orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_3D_EXTERIOR_RENDERS_360_DEGREE" && (
-        <PD3DExteriorRenders360Degree orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PD3DExteriorRenders360Degree orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
 
       {service.value === "PD_2D_RENDERS_EXTERIOR_ELEVATION" && (
-        <PD2DRendersExteriorElevation orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PD2DRendersExteriorElevation orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_BUDGET_EXTERIOR_RENDER" && (
-        <PDBudgetExteriorRender orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDBudgetExteriorRender orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_WALKTHROUGHS" && (
-        <PDWalkthroughs orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDWalkthroughs orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_FLYTHROUGHS" && (
-        <PDFlythroughs orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDFlythroughs orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_PREMIUM_RENDERS" && (
-        <PDPremiumRenders orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDPremiumRenders orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_COMMERCIAL_FLOOR_PLANS" && (
-        <PDCommercialFloorPlans orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDCommercialFloorPlans orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_FLOOR_PLAN_RENDERS" && (
-        <PDFloorPlanRenders orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDFloorPlanRenders orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_CRM_DEVELOPMENT" && (
-        <PDCRMDevelopment orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDCRMDevelopment orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PD_TOUCH_SCREEN_SOLUTIONS" && (
-        <PDTouchScreenSolutions orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PDTouchScreenSolutions orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
 
 
@@ -277,62 +282,62 @@ const BriefingDetails = ({ intl, match, history }) => {
 
 
       {service.value === "VR_EXTERIOR" && (
-        <VRExterior orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <VRExterior orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "VR_INTERIOR" && (
-        <VRInterior orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <VRInterior orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "VR_CUSTOM_PROJECT" && (
-        <VRCustomProject orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <VRCustomProject orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "VR_POOL_CONSTRUCTION" && (
-        <VRPoolConstruction orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <VRPoolConstruction orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "VR_POOL_CONSTRUCTION_CUSTOM_PROJECT" && (
-        <VRPoolConstructionCustomProject orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <VRPoolConstructionCustomProject orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_BRAND_DEVELOPMENT" && (
-        <PMBrandDevelopment orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMBrandDevelopment orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_SITE_PLAN" && (
-        <PMSitePlan orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMSitePlan orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_SITE_COMMERCIAL_FLOOR_PLAN" && (
-        <PMCommercialFloorPlan orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMCommercialFloorPlan orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_DL_FLYERS" && (
-        <PMDLFlyers orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMDLFlyers orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_INFO_BOOKLET" && (
-        <PMInfoBooklet orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMInfoBooklet orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_WEBSITES_LANDING_PAGE" && (
-        <PMWebsitesLandingPage orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMWebsitesLandingPage orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PM_WEBSITES_POST_LAUNCH" && (
-        <PMWebsitesPostLaunch orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PMWebsitesPostLaunch orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
 
       {service.value === "PS_CORFLUTE_SIGN" && (
-        <PSCorfulteSign orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSCorfulteSign orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PS_PULL_UP_BANNERS" && (
-        <PSPullupBanners orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSPullupBanners orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PS_BALMAIN" && (
-        <PSBalmain orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSBalmain orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PS_USB" && (
-        <PSUSB orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSUSB orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PS_NAME_TAGS" && (
-        <PSNameTags orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSNameTags orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PS_FLYERS" && (
-        <PSFlyers orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSFlyers orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {service.value === "PS_BOOKLET" && (
-        <PSBooklet orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSBooklet orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       {
         project && project.delivery_address && (
@@ -379,7 +384,7 @@ const BriefingDetails = ({ intl, match, history }) => {
         )
       }
       {service.value === "PS_DELIVERY" && (
-        <PSDelivery orders={orders} service={service} downloads={downloads} brief={brief} backupNotes={backupNotes} />
+        <PSDelivery orders={orders} service={service} downloads={downloads} clientView={true} brief={brief} backupNotes={backupNotes} />
       )}
       <ChatApplicationMenu history={history} match={match} intl={intl} />
     </>

@@ -12,7 +12,8 @@ const Footer = () => {
             <Colxx xxs="12" sm="6">
               <p className="mb-0 text-muted">© APIRender.com Pty Ltd</p>
             </Colxx>
-            <Colxx className="col-sm-6 d-none d-sm-block">
+            <Colxx className="col-sm-6 d-none d-sm-flex justify-content-end">
+              <p className="mb-0 text-muted text-sm">All Prices are in Australian Dollars and currency can be converted at checkout.</p>
               <ul className="breadcrumb pt-0 pr-0 float-right">
                 <li className="breadcrumb-item mb-0">
                   <NavLink className="btn-link" to={'/app/privacy'}>

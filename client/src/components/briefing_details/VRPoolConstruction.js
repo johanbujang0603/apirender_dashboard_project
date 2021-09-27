@@ -24,6 +24,7 @@ const VRPoolConstruction = ({
   downloads,
   brief,
   backupNotes,
+  clientView
 }) => {
   const [activeTab, setActiveTab] = useState("details");
   return (
@@ -31,6 +32,7 @@ const VRPoolConstruction = ({
       <Row className="chat-row">
         <Colxx md="12" sm="12">
           <h5 className="mb-4">Virtual Pool Construction</h5>
+          <p className="text-danger mb-2 text-small">({orders.map((order) => order.name).join(', ')})</p>
           <Card className="mb-4">
             <CardHeader>
               <Nav tabs className="card-header-tabs">
@@ -57,7 +59,7 @@ const VRPoolConstruction = ({
                     to="#"
                     location={{}}
                   >
-                    <IntlMessages id="pages.client-files" />(
+                    { clientView === true ? 'Your Files' : 'Client Files' }(
                     {
                       downloads.filter(function (item) {
                         return item.service_option == "basic";

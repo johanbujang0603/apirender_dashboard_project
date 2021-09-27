@@ -122,7 +122,8 @@ const REFloorPlans = ({ service, orders, history }) => {
         <Colxx md="12">
           <Card className="mb-4">
             <CardBody>
-              <h5 className="text-primary mb-5">Floor Plans</h5>
+              <h5 className="text-primary mb-2">Floor Plans</h5>
+              <p className="text-danger mb-3 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 {planStyles &&
                   planStyles.map((plan, index) => {

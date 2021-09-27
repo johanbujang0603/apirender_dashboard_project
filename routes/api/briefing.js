@@ -114,7 +114,7 @@ router.post("/get-briefing", async (req, res) => {
       const backupNotes = await Backup.find({service_id: _id});
       if (briefing.length == 0) return res.status(404).json({message: "No briefing found!"})
       const result = {
-          service: {value: service.value, is_paid: service.is_paid, _id: service._id},
+          service: {value: service.value, is_paid: service.is_paid, _id: service._id, status: service.status},
           orders: JSON.parse(service.orders),
           content: briefing.content,
           customer: customer,

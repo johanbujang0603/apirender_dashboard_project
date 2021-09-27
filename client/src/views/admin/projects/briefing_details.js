@@ -10,10 +10,11 @@ import {
   Form,
   Input,
   CardBody,
-  CardTitle
+  Badge
 } from "reactstrap";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import IntlMessages from "../../../helpers/IntlMessages";
+import NotificationManager from "../../../components/common/react-notifications/NotificationManager";
 
 import PRPhotoRetouching from "../../../components/briefing_details/PRPhotoRetouching";
 import PRPortraitRetouching from "../../../components/briefing_details/PRPortraitRetouching";
@@ -147,6 +148,28 @@ const BriefingDetails = ({ intl, match, history }) => {
       });
   }
 
+  const confirmService = () => {
+    axios
+      .post(`/api/briefing/confirm-service?_id=${match.params.id}`)
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => {
+        NotificationManager.success(
+          "The service has been completed!.",
+          "Congratulations!",
+          3000,
+          null,
+          null,
+          ""
+        );
+        history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return !isLoaded ? (
     <div className="loading" />
   ) : (
@@ -157,6 +180,21 @@ const BriefingDetails = ({ intl, match, history }) => {
             <IntlMessages id="projects.briefing" /> - &nbsp;
             <span className="text-primary text-default">{project && project.project_name}</span>
           </h1>
+          <div className="ml-auto text-zero top-right-button-container">
+            {
+              service.status === "COMPLETED" ? (
+                <Badge color="success">Marked As Completed</Badge>
+              ) : (  
+                <Button
+                  color="primary"
+                  className="top-right-button"
+                  onClick={confirmService}
+                >
+                  Mark as Complete
+                </Button>
+              )
+            }
+          </div>
           <Separator className="mb-5" />
         </Colxx>
       </Row>

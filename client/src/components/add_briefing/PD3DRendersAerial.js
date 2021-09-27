@@ -111,6 +111,7 @@ const PD3DRendersAerial = ({ service, orders, history }) => {
           <Card className="mb-4">
             <CardBody>
               <h5 className="text-primary mb-5">3D Renders (Aerial Render)</h5>
+              <p className="text-danger mb-2 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label className="font-weight-bold">

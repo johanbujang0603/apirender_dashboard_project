@@ -110,7 +110,8 @@ const PD3DExteriorRenders = ({ service, orders, history }) => {
         <Colxx md="12">
           <Card className="mb-4">
             <CardBody>
-              <h5 className="text-primary mb-5">3D Exterior Renders</h5>
+              <h5 className="text-primary mb-2">3D Exterior Renders</h5>
+              <p className="text-danger mb-3 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label className="font-weight-bold">

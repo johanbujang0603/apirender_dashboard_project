@@ -27,6 +27,7 @@ const PDInteriorRenders = ({
   downloads,
   brief,
   backupNotes,
+  clientView
 }) => {
   const [activeTab, setActiveTab] = useState("details");
   const [residentialQty, setResidentialQty] = useState(null);
@@ -50,7 +51,8 @@ const PDInteriorRenders = ({
     <>
       <Row className="chat-row">
         <Colxx md="12" sm="12">
-          <h5 className="mb-4">Interior Renders</h5>
+          <h5 className="mb-2">Interior Renders</h5>
+          <p className="text-danger mb-3 text-small">({orders.map((order) => order.name).join(', ')})</p>
           <Card className="mb-4">
             <CardHeader>
               <Nav tabs className="card-header-tabs">
@@ -77,7 +79,7 @@ const PDInteriorRenders = ({
                     to="#"
                     location={{}}
                   >
-                    <IntlMessages id="pages.client-files" />(
+                    { clientView === true ? 'Your Files' : 'Client Files' }(
                     {
                       downloads.filter(function (item) {
                         return item.service_option == "basic";

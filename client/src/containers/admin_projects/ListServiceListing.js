@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Badge, Table, CardBody, Card, CardTitle } from 'reactstrap';
+import { Row, Badge, Table } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { Colxx } from '../../components/common/CustomBootstrap';
 import Pagination from './Pagination';
@@ -9,18 +9,11 @@ import { statusColor } from '../../constants/status';
 import CustomerDetailSidebar from './CustomerDetailSidebar';
 import { services } from "../../constants/projectValues";
 
-function collect(props) {
-  return { data: props.data };
-}
-
 const ListServiceListing = ({
   items,
-  displayMode,
-  selectedItems,
   currentPage,
   totalPage,
   onChangePage,
-  projectID,
   project,
 }) => {
   const getOptionNumbers = (orders) => {
@@ -75,7 +68,7 @@ const ListServiceListing = ({
                     </td>
                     <td role="cell" className="truncate align-middle list-item-heading w-10">
                     {
-                      product.is_paid && (product.status === "IN PROGRESS" || product.status === "REVIEW") && (
+                      product.is_paid && (
                         <NavLink
                           exact={true}
                           to={`/admin/projects/briefing/${product._id}`}

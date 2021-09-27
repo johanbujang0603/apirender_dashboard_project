@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { injectIntl } from "react-intl";
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import {
@@ -6,8 +6,6 @@ import {
   Card,
   CardBody,
   CardHeader,
-  FormGroup,
-  Label,
   Nav,
   NavItem,
   TabContent,
@@ -20,13 +18,14 @@ import IntlMessages from "../../helpers/IntlMessages";
 import { downloadFile } from '../../helpers/Utils';
 import {bytesToSize} from '../../helpers/Utils';
 
-const PRPhotoRetouching = ({ downloads, brief, backupNotes }) => {
+const PRPhotoRetouching = ({ orders, downloads, brief, backupNotes, clientView }) => {
   const [activeTab, setActiveTab] = useState('details');
   return (
     <>
       <Row className="chat-row">
       <Colxx md="12" sm="12">
-          <h5 className="mb-4">Real Estate Photo Retouching</h5>
+          <h5 className="mb-2">Real Estate Photo Retouching</h5>
+          <p className="text-danger mb-3 text-small">({orders.map((order) => order.name).join(', ')})</p>
           <Card className="mb-4">
             <CardHeader>
               <Nav tabs className="card-header-tabs">
@@ -53,7 +52,7 @@ const PRPhotoRetouching = ({ downloads, brief, backupNotes }) => {
                       to="#"
                       location={{}}
                     >
-                      <IntlMessages id="pages.client-files" />
+                      { clientView === true ? 'Your Files' : 'Client Files' }
                       ({
                         downloads.filter(function(item) {
                           return item.service_option == 'basic';

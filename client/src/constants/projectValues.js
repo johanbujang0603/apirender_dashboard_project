@@ -2911,26 +2911,6 @@ export const options = {
         },
       ],
     },
-    {
-      name: "Design Fee (if required)",
-      value: "PS_FLYERS_DESIGN_FEE",
-      items: [
-        {
-          name: "Standard",
-          price: 1600.0,
-          currency: "AUD",
-          unit: "Design",
-          value: "PS_FLYERS_DESIGN_FEE_STANDARD",
-        },
-        {
-          name: "Copywriting",
-          price: 250.0,
-          currency: "AUD",
-          unit: "Design",
-          value: "PS_FLYERS_DESIGN_FEE_COPYWRITING",
-        },
-      ],
-    },
   ],
   PS_BOOKLET: [
     {
@@ -3700,49 +3680,6 @@ export const options = {
           value: "PS_BOOKLET_5DOT5_8DOT5_32P_28INSIDE_2000",
           price: 5650.0,
           currency: "AUD",
-        },
-      ],
-    },
-    {
-      name: "Design Fee (if required)",
-      value: "PS_BOOKLET_DESIGN_FEE",
-      itemsType: "SELECT_ONE",
-      items: [
-        {
-          name: "4 to 6 Pages",
-          price: 1100.0,
-          currency: "AUD",
-          value: "PS_BOOKLET_DESIGN_FEE_4_TO_6PAGES",
-        },
-        {
-          name: "8 to 12 Pages",
-          price: 2000.0,
-          currency: "AUD",
-          value: "PS_BOOKLET_DESIGN_FEE_8_TO_12PAGES",
-        },
-        {
-          name: "14 to 18 Pages",
-          price: 2800.0,
-          currency: "AUD",
-          value: "PS_BOOKLET_DESIGN_FEE_14_TO_18PAGES",
-        },
-        {
-          name: "20 to 24 Pages",
-          price: 3400.0,
-          currency: "AUD",
-          value: "PS_BOOKLET_DESIGN_FEE_20_TO_24PAGES",
-        },
-        {
-          name: "26 to 30 Pages",
-          price: 3900.0,
-          currency: "AUD",
-          value: "PS_BOOKLET_DESIGN_FEE_26_TO_30PAGES",
-        },
-        {
-          name: "Copywriting",
-          price: 250.0,
-          currency: "AUD",
-          value: "PS_BOOKLET_DESIGN_FEE_COPYWRITING",
         },
       ],
     },

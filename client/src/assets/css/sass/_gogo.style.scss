@@ -1727,7 +1727,9 @@ button {
 
     .navbar-right {
         flex-basis: 40%;
-        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
 
         .rc-switch {
             margin-top: -2px;

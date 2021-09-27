@@ -26,13 +26,15 @@ const PD3DInteriorRenders360Degree = ({
   downloads,
   brief,
   backupNotes,
+  clientView
 }) => {
   const [activeTab, setActiveTab] = useState("details");
   return (
     <>
       <Row className="chat-row">
         <Colxx md="12" sm="12">
-          <h5 className="mb-4">3D Interior Renders (360 Degree)</h5>
+          <h5 className="mb-2">3D Interior Renders (360 Degree)</h5>
+          <p className="text-danger mb-3 text-small">({orders.map((order) => order.name).join(', ')})</p>
           <Card className="mb-4">
             <CardHeader>
               <Nav tabs className="card-header-tabs">
@@ -59,7 +61,7 @@ const PD3DInteriorRenders360Degree = ({
                     to="#"
                     location={{}}
                   >
-                    <IntlMessages id="pages.client-files" />(
+                    { clientView === true ? 'Your Files' : 'Client Files' }(
                     {
                       downloads.filter(function (item) {
                         return item.service_option == "basic";

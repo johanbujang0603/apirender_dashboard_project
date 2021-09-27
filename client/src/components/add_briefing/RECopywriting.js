@@ -36,7 +36,7 @@ const initialFormData = {
   additionalFileLink: null
 };
 
-const RECopywriting = ({ service, history }) => {
+const RECopywriting = ({ service, orders, history }) => {
   const dropzone = useRef();
   let intervalId = useRef(null)
 
@@ -112,7 +112,8 @@ const RECopywriting = ({ service, history }) => {
         <Colxx md="12">
           <Card className="mb-4">
             <CardBody>
-              <h5 className="text-primary mb-5">Real Estate Copywriting</h5>
+              <h5 className="text-primary mb-2">Real Estate Copywriting</h5>
+              <p className="text-danger mb-3 text-small">{orders.map((order) => order.name).join(', ')}</p>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label className="font-weight-bold">
