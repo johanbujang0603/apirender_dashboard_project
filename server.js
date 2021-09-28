@@ -102,6 +102,7 @@ cron.schedule("* * * * * *", async () => {
                     cron_running = false;
                 fs.unlinkSync(__dirname + files[i].temp_path);
             } catch (e) {
+                console.log(e);
                 cron_running = false;
                 break;
             }
