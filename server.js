@@ -80,35 +80,34 @@ cron.schedule("* * * * * *", async () => {
         console.log("The number of uploading files: ", files.length);
         for (let i = 0 ; i < files.length; i ++) {
             console.log(files[i]);
-            // const fileContent = fs.readFileSync(__dirname + files[i].temp_path);
-            // console.log(__dirname + files[i].temp_path, fileContent);
-            // const params = {
-            //     Bucket: 'apirender-dashboard-bucket-2020-sep',
-            //     Key: files[i].key_name,
-            //     Body: fileContent
-            // };
+            try {
+                const fileContent = fs.readFileSync(__dirname + files[i].temp_path);
+                const params = {
+                    Bucket: 'apirender-dashboard-bucket-2020-sep',
+                    Key: files[i].key_name,
+                    Body: fileContent
+                };
 
-            // try {
-            //     const stored = await s3.upload(params).promise();
+                const stored = await s3.upload(params).promise();
 
-            //     await File.updateOne({ _id: files[i]._id }, {
-            //         $set: {
-            //             is_uploaded: true,
-            //             progress: 100,
-            //             path: stored.Location,
-            //             temp_path: "",
-            //         }
-            //     });
-            //     console.log("uploaded!!!");
-            //     uploaded_cnt ++;
-            //     if (uploaded_cnt >= files.length)
-            //         cron_running = false;
-            //     fs.unlinkSync(__dirname + files[i].temp_path);
-            // } catch (e) {
-            //     console.log(e);
-            //     cron_running = false;
-            //     break;
-            // }
+                await File.updateOne({ _id: files[i]._id }, {
+                    $set: {
+                        is_uploaded: true,
+                        progress: 100,
+                        path: stored.Location,
+                        temp_path: "",
+                    }
+                });
+                console.log("uploaded!!!");
+                uploaded_cnt ++;
+                if (uploaded_cnt >= files.length)
+                    cron_running = false;
+                fs.unlinkSync(__dirname + files[i].temp_path);
+            } catch (e) {
+                console.log(e);
+                cron_running = false;
+                break;
+            }
         }
     }
 });
