@@ -72,6 +72,7 @@ app.use("/api/actions", actions);
 const port = process.env.PORT || 5000;
 
 cron.schedule("* * * * * *", async () => {
+    console.log("Cronjob is running");
     const files = await File.find({ is_uploaded: false });
     if (cron_running === false && files.length > 0) {
         let uploaded_cnt = 0;
