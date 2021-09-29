@@ -79,13 +79,14 @@ cron.schedule("* * * * * *", async () => {
         cron_running = true;
         console.log("The number of uploading files: ", files.length);
         for (let i = 0 ; i < files.length; i ++) {
-            const fileContent = fs.readFileSync(__dirname + files[i].temp_path);
-            console.log(__dirname + files[i].temp_path, fileContent);
-            const params = {
-                Bucket: 'apirender-dashboard-bucket-2020-sep',
-                Key: files[i].key_name,
-                Body: fileContent
-            };
+            console.log(files[i]);
+            // const fileContent = fs.readFileSync(__dirname + files[i].temp_path);
+            // console.log(__dirname + files[i].temp_path, fileContent);
+            // const params = {
+            //     Bucket: 'apirender-dashboard-bucket-2020-sep',
+            //     Key: files[i].key_name,
+            //     Body: fileContent
+            // };
 
             // try {
             //     const stored = await s3.upload(params).promise();
