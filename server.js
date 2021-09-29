@@ -85,9 +85,9 @@ cron.schedule("* * * * * *", async () => {
                 Key: files[i].key_name,
                 Body: fileContent
             };
-
-            const stored = await s3.upload(params).promise();
+            
             try {
+                const stored = await s3.upload(params).promise();
                 await File.updateOne({ _id: files[i]._id }, {
                     $set: {
                         is_uploaded: true,
