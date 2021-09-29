@@ -87,26 +87,27 @@ cron.schedule("* * * * * *", async () => {
                 Body: fileContent
             };
 
-            try {
-                const stored = await s3.upload(params).promise();
-                await File.updateOne({ _id: files[i]._id }, {
-                    $set: {
-                        is_uploaded: true,
-                        progress: 100,
-                        path: stored.Location,
-                        temp_path: "",
-                    }
-                });
-                console.log("uploaded!!!");
-                uploaded_cnt ++;
-                if (uploaded_cnt >= files.length)
-                    cron_running = false;
-                fs.unlinkSync(__dirname + files[i].temp_path);
-            } catch (e) {
-                console.log(e);
-                cron_running = false;
-                break;
-            }
+            // try {
+            //     const stored = await s3.upload(params).promise();
+
+            //     await File.updateOne({ _id: files[i]._id }, {
+            //         $set: {
+            //             is_uploaded: true,
+            //             progress: 100,
+            //             path: stored.Location,
+            //             temp_path: "",
+            //         }
+            //     });
+            //     console.log("uploaded!!!");
+            //     uploaded_cnt ++;
+            //     if (uploaded_cnt >= files.length)
+            //         cron_running = false;
+            //     fs.unlinkSync(__dirname + files[i].temp_path);
+            // } catch (e) {
+            //     console.log(e);
+            //     cron_running = false;
+            //     break;
+            // }
         }
     }
 });
