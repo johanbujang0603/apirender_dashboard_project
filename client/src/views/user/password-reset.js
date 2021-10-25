@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Card, CardTitle, Label, FormGroup, Button } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
+import * as Yup from "yup";
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Colxx } from '../../components/common/CustomBootstrap';
 import IntlMessages from '../../helpers/IntlMessages';
-import { forgotPassword } from '../../redux/actions';
 import { NotificationManager } from '../../components/common/react-notifications';
 
-const validateEmail = (value) => {
-  let error;
-  if (!value) {
-    error = 'Please enter your email address';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = 'Invalid email address';
-  }
-  return error;
-};
 
-const ForgotPassword = ({
+const validationSchema = Yup.object().shape({
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password is required"),
+});
+
+const PasswordReset = ({
   history,
   loading
 }) => {
-  const [email] = useState('');
+  const params = useParams();
 
-  const onForgotPassword = (values) => {
-    console.log(values.email);
-    axios.post("/api/password-reset/", { email: values.email })
+  const onPasswordReset = (values) => {
+    axios.post(`/api/password-reset/${params.userId}/${params.token}`, { password: values.password })
     .then((res) => {
       NotificationManager.success(
         res.data,
@@ -40,11 +39,18 @@ const ForgotPassword = ({
       history.push('/user/login');
     })
     .catch((err) => {
-      console.log(err.response);
+      NotificationManager.warning(
+        err.response.data,
+        'Error',
+        3000,
+        null,
+        null,
+        ''
+      );
     })
   };
 
-  const initialValues = { email };
+  const initialValues = { password: '', confirmPassword: '' };
 
   return (
     <Row className="h-100">
@@ -57,31 +63,49 @@ const ForgotPassword = ({
               <span className="logo-single" />
             </NavLink>
             <CardTitle className="mb-4">
-              <IntlMessages id="user.forgot-password" />
+              Password Reset
             </CardTitle>
 
-            <Formik initialValues={initialValues} onSubmit={onForgotPassword}>
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onPasswordReset}>
               {({ errors, touched }) => (
                 <Form className="av-tooltip tooltip-label-bottom">
-                  <FormGroup className="form-group has-float-label">
+                  <FormGroup className="form-group has-float-label  mb-4">
                     <Label>
-                      <IntlMessages id="user.email" />
+                      <IntlMessages
+                        id="user.password"
+                      />
                     </Label>
                     <Field
                       className="form-control"
-                      name="email"
-                      validate={validateEmail}
+                      type="password"
+                      name="password"
                     />
-                    {errors.email && touched.email && (
+                    {errors.password && touched.password && (
                       <div className="invalid-feedback d-block">
-                        {errors.email}
+                        {errors.password}
                       </div>
                     )}
                   </FormGroup>
-
+                  <FormGroup className="form-group has-float-label  mb-4">
+                    <Label>
+                      <IntlMessages
+                        id="user.confirm-password"
+                      />
+                    </Label>
+                    <Field
+                      className="form-control"
+                      type="password"
+                      name="confirmPassword"
+                    />
+                    {errors.confirmPassword && touched.confirmPassword && (
+                      <div className="invalid-feedback d-block">
+                        {errors.confirmPassword}
+                      </div>
+                    )}
+                  </FormGroup>
                   <div className="d-flex justify-content-between align-items-center">
-                    <NavLink to="/user/forgot-password">
-                      <IntlMessages id="user.forgot-password-question" />
+                    <NavLink to="/user/login">
+                      Sign in ?
                     </NavLink>
                     <Button
                       color="primary"
@@ -110,11 +134,4 @@ const ForgotPassword = ({
   );
 };
 
-const mapStateToProps = ({ authUser }) => {
-  const { forgotUserMail, loading, error } = authUser;
-  return { forgotUserMail, loading, error };
-};
-
-export default connect(mapStateToProps, {
-  forgotPasswordAction: forgotPassword,
-})(ForgotPassword);
+export default connect(null, {})(PasswordReset);

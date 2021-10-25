@@ -32,6 +32,7 @@ const file = require("./routes/api/file");
 const backup = require("./routes/api/backup");
 const dashboard = require("./routes/api/dashboard");
 const actions = require("./routes/api/actions");
+const passwordReset = require("./routes/api/passwordReset");
 
 const app = express();
 
@@ -68,54 +69,55 @@ app.use("/api/file", file);
 app.use("/api/backup", backup);
 app.use("/api/dashboard", dashboard);
 app.use("/api/actions", actions);
+app.use("/api/password-reset", passwordReset);
 
 const port = process.env.PORT || 5000;
 
-cron.schedule("* * * * * *", async () => {
-    console.log("Cronjob is running");
-    const files = await File.find({ is_uploaded: false });
-    if (cron_running === false && files.length > 0) {
-        let uploaded_cnt = 0;
-        cron_running = true;
-        console.log("The number of uploading files: ", files.length);
-        for (let i = 0 ; i < files.length; i ++) {
-            let fileContent = null;
-            let params = {};
-            try {
-                fileContent = fs.readFileSync(__dirname + files[i].temp_path);
-                params = {
-                    Bucket: 'apirender-dashboard-bucket-2020-sep',
-                    Key: files[i].key_name,
-                    Body: fileContent
-                };
-            }
-            catch (e) {
-                console.log(e);
-                continue;
-            }
+// cron.schedule("* * * * * *", async () => {
+//     console.log("Cronjob is running");
+//     const files = await File.find({ is_uploaded: false });
+//     if (cron_running === false && files.length > 0) {
+//         let uploaded_cnt = 0;
+//         cron_running = true;
+//         console.log("The number of uploading files: ", files.length);
+//         for (let i = 0 ; i < files.length; i ++) {
+//             let fileContent = null;
+//             let params = {};
+//             try {
+//                 fileContent = fs.readFileSync(__dirname + files[i].temp_path);
+//                 params = {
+//                     Bucket: 'apirender-dashboard-bucket-2020-sep',
+//                     Key: files[i].key_name,
+//                     Body: fileContent
+//                 };
+//             }
+//             catch (e) {
+//                 console.log(e);
+//                 continue;
+//             }
 
-            try {
-                const stored = await s3.upload(params).promise();
-                await File.updateOne({ _id: files[i]._id }, {
-                    $set: {
-                        is_uploaded: true,
-                        progress: 100,
-                        path: stored.Location,
-                        temp_path: "",
-                    }
-                });
-                console.log("uploaded!!!");
-                uploaded_cnt ++;
-                if (uploaded_cnt >= files.length)
-                    cron_running = false;
-                fs.unlinkSync(__dirname + files[i].temp_path);
-            } catch (e) {
-                console.log(e);
-                cron_running = false;
-                break;
-            }
-        }
-    }
-});
+//             try {
+//                 const stored = await s3.upload(params).promise();
+//                 await File.updateOne({ _id: files[i]._id }, {
+//                     $set: {
+//                         is_uploaded: true,
+//                         progress: 100,
+//                         path: stored.Location,
+//                         temp_path: "",
+//                     }
+//                 });
+//                 console.log("uploaded!!!");
+//                 uploaded_cnt ++;
+//                 if (uploaded_cnt >= files.length)
+//                     cron_running = false;
+//                 fs.unlinkSync(__dirname + files[i].temp_path);
+//             } catch (e) {
+//                 console.log(e);
+//                 cron_running = false;
+//                 break;
+//             }
+//         }
+//     }
+// });
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
