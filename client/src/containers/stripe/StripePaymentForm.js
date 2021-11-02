@@ -120,7 +120,8 @@ const StripePaymentForm = ({
   history,
   delivery,
   isPrintingService,
-  deliveryAddr
+  deliveryAddr,
+  services
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const handleResult = (data) => {
@@ -137,9 +138,10 @@ const StripePaymentForm = ({
       projectID: match.params.id,
       userEmail: JSON.parse(localStorage.getItem("current_user")).email,
       deliveryOption: delivery,
-      deliveryAddress: deliveryAddr
+      deliveryAddress: deliveryAddr,
+      services: services
     };
-    console.log(postData);
+    
     axios.post(`/api/payments/charge`, postData).then((res) => {
       setIsLoading(false);
       history.push(`/thank-you/payment/${match.params.id}`);

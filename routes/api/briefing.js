@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const AWS = require('aws-sdk');
 const formidable = require("formidable");
+const sgMail = require("@sendgrid/mail");
 
 const File = require("../../models/File");
 const Briefing = require("../../models/Briefing");
@@ -81,6 +82,32 @@ router.post("/save", async (req, res) => {
   
       const serviceObj = await Service.findOne({_id: serviceId});
       await checkProjectStatus(serviceObj.project);
+
+      const projectObj = await Project.findOne({_id: serviceObj.project});
+      const userObj = await User.findOne({ _id: projectObj.user_id });
+
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+        from: process.env.VERIFIED_SENDER_EMAIL,
+        personalizations: [
+          {
+            to: [
+              {
+                  email: userObj.email,
+              },
+            ],
+            dynamic_template_data: {
+            },
+          },
+        ],
+        templateId: process.env.SENDGRID_BRIEF_TEMPLATE_ID,
+      };
+
+      try {
+        await sgMail.send(msg);
+      } catch (e) {
+        console.log(e);
+      }
       return res.status(200).json({message: 'succcess'});
   
     } catch (err) {

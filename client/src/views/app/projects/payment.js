@@ -100,6 +100,7 @@ const Payment = ({ intl, match, history }) => {
         <Colxx sm="12" md="4" className="mb-4">
           <StripePaymentForm
             match={match}
+            services={services}
             totalAmount={totalPrice}
             delivery={delivery}
             deliveryAddr={deliveryAddr}

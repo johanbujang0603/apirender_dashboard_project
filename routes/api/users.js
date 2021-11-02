@@ -64,7 +64,7 @@ router.post("/register", async (req, res) => {
                             {
                                 to: [
                                 {
-                                    email: "russeldevsmart1998@gmail.com",
+                                    email: req.body.email,
                                 },
                                 ],
                                 dynamic_template_data: {
