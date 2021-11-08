@@ -6,6 +6,7 @@ const passport = require("passport");
 const cron = require("node-cron");
 const AWS = require('aws-sdk');
 const fs = require('fs');
+const mime = require('mime-types')
 
 let cron_running = false;
 
@@ -85,9 +86,13 @@ cron.schedule("* * * * * *", async () => {
             let params = {};
             try {
                 fileContent = fs.readFileSync(__dirname + files[i].temp_path);
+                console.log(files[i].extension);
+                console.log(mime.lookup(files[i].extension));
+
                 params = {
                     Bucket: 'apirender-dashboard-bucket-2020-sep',
-                    Key: files[i].key_name,
+                    Key: files[i].key_name + files[i].extension,
+                    ContentType: mime.lookup(files[i].extension) === false ? '' : mime.lookup(files[i].extension),
                     Body: fileContent
                 };
             }

@@ -1,6 +1,7 @@
 import { defaultDirection } from '../constants/defaultValues';
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { saveAs } from "file-saver";
 
 export const mapOrder = (array, order, key) => {
   array.sort(function (a, b) {
@@ -88,10 +89,13 @@ export const bytesToSize = bytes => {
 }
 
 export const downloadFile = (path, original_name) => {
-	let a = document.createElement('a');
-  a.href = 'https://apirender-dashboard-bucket-2020-sep.s3.amazonaws.com/' + path;
-	a.download = original_name;
-	a.click();
+  const re = /(?:\.([^.]+))?$/;
+  const ext = re.exec(original_name)[1];
+  axios.get(`/api/file/download?path=${path}.${ext}`)
+    .then((res) => {
+      const blob = new Blob([ Uint8Array.from(res.data.Body.data).buffer ], {type: res.data.type});
+      saveAs(blob, original_name);
+    });
 }
 
 export const updateUser = (user) => {
