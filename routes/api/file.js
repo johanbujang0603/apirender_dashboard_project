@@ -18,6 +18,7 @@ const s3 = new AWS.S3({
 
 router.get("/download", async (req, res) => {
   const key_name = req.query.path;
+  console.log(key_name);
   const params = {
     Bucket: 'apirender-dashboard-bucket-2020-sep',
     Key: key_name,
@@ -25,8 +26,6 @@ router.get("/download", async (req, res) => {
   s3.getObject( params, function (error, data) {
     if (error != null) return res.status(400)
     let buffer = Buffer.from(data.Body);
-    let arraybuffer = Uint8Array.from(buffer).buffer;
-    // console.log(arraybuffer);
     res.json({Body: buffer, type: data.ContentType});
   });
 });

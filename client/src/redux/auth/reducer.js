@@ -19,6 +19,7 @@ const INIT_STATE = {
   loading: false,
   loginError: null,
   registerError: null,
+  message: '',
 };
 
 export default (state = INIT_STATE, action) => {
@@ -31,6 +32,7 @@ export default (state = INIT_STATE, action) => {
         loading: false,
         user: action.payload,
         isAuthenticated: true,
+        message: '',
       };
     case LOGIN_USER_ERROR:
       return {
@@ -40,19 +42,20 @@ export default (state = INIT_STATE, action) => {
         isAuthenticated: false,
         loginError: action.payload.message,
         registerError: null,
+        message: '',
       };
     case REGISTER_USER:
-      return { ...state, loading: true, loginError: null, registerError: null };
+      return { ...state, loading: true, loginError: null, registerError: null, message: '' };
     case REGISTER_USER_SUCCESS:
-      return { ...state, loading: false, user: "", loginError: null, registerError: null };
+      return { ...state, loading: false, user: "", loginError: null, registerError: null, message: 'Thank you - Please check your email inbox to complete your registration.' };
     case REGISTER_USER_ERROR:
-      console.log(action.payload.message);
       return {
         ...state,
         loading: false,
         user: "",
         registerError: action.payload.message,
         loginError: null,
+        message: '',
       };
     case GET_ME_SUCCESS:
       return {

@@ -75,7 +75,7 @@ app.use("/api/password-reset", passwordReset);
 const port = process.env.PORT || 5000;
 
 cron.schedule("* * * * * *", async () => {
-    console.log("Cronjob is running");
+    // console.log("Cronjob is running");
     const files = await File.find({ is_uploaded: false });
     if (cron_running === false && files.length > 0) {
         let uploaded_cnt = 0;
@@ -86,8 +86,6 @@ cron.schedule("* * * * * *", async () => {
             let params = {};
             try {
                 fileContent = fs.readFileSync(__dirname + files[i].temp_path);
-                console.log(files[i].extension);
-                console.log(mime.lookup(files[i].extension));
 
                 params = {
                     Bucket: 'apirender-dashboard-bucket-2020-sep',

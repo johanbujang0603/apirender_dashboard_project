@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { NavLink } from 'react-router-dom';
 import { injectIntl } from "react-intl";
 import axios from "axios";
 import {
@@ -82,6 +83,7 @@ const BriefingDetails = ({ intl, match, history }) => {
   const [isBackup, setIsBackup] = useState(false);
   const [backupNotes, setBackupNotes] = useState('');
   const [notes, setNotes] = useState(' ');
+  const [uploadText, setUploadText] = useState('Submit');
 
   useEffect(() => {
     axios
@@ -136,6 +138,8 @@ const BriefingDetails = ({ intl, match, history }) => {
     axios
       .post(`/api/briefing/save-backup`, uploadFormData, config)
       .then((res) => {
+        dropzone.current.myDropzone.removeAllFiles(true);
+        setUploadText('Upload Complete / Upload Another File');
         if (isBackup)
           setIsBackup(false);
         setBtnLoading(false);
@@ -176,10 +180,18 @@ const BriefingDetails = ({ intl, match, history }) => {
     <>
       <Row className="chat-row">
         <Colxx xxs="12">
-          <h1>
-            <IntlMessages id="projects.briefing" /> - &nbsp;
-            <span className="text-primary text-default">{project && project.project_name}</span>
-          </h1>
+          <div className="d-flex align-items-center mb-3">
+            <NavLink
+              to={`/admin/projects/details/${project._id}`}
+              className="mr-2"
+            >
+              <i className="iconsminds-arrow-back-3" />
+            </NavLink>
+            <h1 className="pb-0 mb-0">
+              <IntlMessages id="projects.briefing" /> - &nbsp;
+              <span className="text-primary text-default">{project && project.project_name}</span>
+            </h1>
+          </div>
           <div className="ml-auto text-zero top-right-button-container">
             {
               service.status === "COMPLETED" ? (
@@ -247,7 +259,7 @@ const BriefingDetails = ({ intl, match, history }) => {
                         <span className="bounce3" />
                       </span>
                       <span className="label">
-                        <IntlMessages id="briefing.submit" />
+                        {uploadText}
                       </span>
                     </Button>
                   </FormGroup>

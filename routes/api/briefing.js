@@ -197,16 +197,16 @@ router.post("/save-backup", async (req, res) => {
       const fileContent = fs.readFileSync(files[i].path);
       const fileSize = fs.statSync(files[i].path).size;
       const rawBytes = await crypto.pseudoRandomBytes(16);
-      const fileName = rawBytes.toString('hex') + Date.now() + path.extname(files[i].name);
+      const fileName = rawBytes.toString('hex') + Date.now();;
       reqData.push({
         service_option: files[i].name,
         original_name: files[i].file_name,
         key_name: fileName,
         file_size: fileSize,
-        extension: path.extname(files[i].name),
+        extension: path.extname(files[i].file_name),
         param: {
           Bucket: 'apirender-dashboard-bucket-2020-sep',
-          Key: fileName,
+          Key: fileName + path.extname(files[i].file_name),
           Body: fileContent
         }
       });
@@ -227,7 +227,7 @@ router.post("/save-backup", async (req, res) => {
         }
       })
     );
-    
+
     for (let i = 0 ; i < s3Responses.length; i ++) {
       const newFile = new File({
         service_id: serviceId,
@@ -236,7 +236,9 @@ router.post("/save-backup", async (req, res) => {
         key_name: s3Responses[i].key_name,
         path: s3Responses[i].data.Location,
         file_size: s3Responses[i].file_size,
-        extension: s3Responses[i].extension
+        extension: s3Responses[i].extension,
+        is_uploaded: true,
+        temp_path: '',
       });
       await newFile.save();
     }

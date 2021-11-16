@@ -314,7 +314,10 @@ const PRPhotoRetouching = ({ orders, downloads, brief, backupNotes, clientView }
                                     <FileIcon extension={download.extension.replace('.', '')} {...defaultStyles[download.extension.replace('.', '')]} />
                                   </p>
                                   <p className="text-center mb-1 text-truncate">
-                                    <a href='#' onClick={(e) => downloadFile(download.key_name, download.original_name)}>
+                                    <a href='#!' onClick={(e) => {
+                                      e.preventDefault();
+                                      downloadFile(download.key_name, download.original_name)}
+                                    }>
                                     {download.original_name}
                                     </a>
                                   </p>
@@ -362,7 +365,10 @@ const PRPhotoRetouching = ({ orders, downloads, brief, backupNotes, clientView }
                                     <FileIcon extension={download.extension.replace('.', '')} {...defaultStyles[download.extension.replace('.', '')]} />
                                   </p>
                                   <p className="text-center mb-1 text-truncate">
-                                    <a href='#' onClick={(e) => downloadFile(download.key_name, download.original_name)}>
+                                    <a href='#!' onClick={(e) => {
+                                      e.preventDefault();
+                                      downloadFile(download.key_name, download.original_name)
+                                    }}>
                                     {download.original_name}
                                     </a>
                                   </p>

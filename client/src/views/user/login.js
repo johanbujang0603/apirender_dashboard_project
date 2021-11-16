@@ -17,9 +17,15 @@ const Login = ({
   loginError,
   isAuthenticated,
   loginUserAction,
+  message
 }) => {
   const [email] = useState("");
   const [password] = useState("");
+
+  useEffect(() => {
+    console.log(message)
+  }, [message])
+
   useEffect(() => {
     if (loginError) {
       NotificationManager.warning(
@@ -55,6 +61,10 @@ const Login = ({
             <CardTitle className="mb-4">
               <IntlMessages id="user.login-title" />
             </CardTitle>
+
+            { message && (
+              <p className="text-small text-primary mb-5">{message}</p>
+            ) }
 
             <Formik initialValues={initialValues} onSubmit={onUserLogin}>
               {({ errors, touched }) => (
@@ -126,8 +136,8 @@ const Login = ({
   );
 };
 const mapStateToProps = ({ authUser }) => {
-  const { loading, loginError, isAuthenticated } = authUser;
-  return { loading, loginError, isAuthenticated };
+  const { loading, loginError, isAuthenticated, message } = authUser;
+  return { loading, loginError, isAuthenticated, message };
 };
 
 export default connect(mapStateToProps, {
