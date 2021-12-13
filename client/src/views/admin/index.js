@@ -19,6 +19,10 @@ const Settings = React.lazy(() =>
 const OrderList = React.lazy(() =>
   import(/* webpackChunkName: "projects" */ './orders')
 );
+const Coupons = React.lazy(() =>
+  import(/* webpackChunkName: "coupons" */ './coupons')
+);
+
 const Admin = ({ match }) => {
   return (
     <AdminLayout>
@@ -49,6 +53,10 @@ const Admin = ({ match }) => {
             <Route
               path={`${match.url}/orders`}
               render={(props) => <OrderList {...props} />}
+            />
+            <Route
+              path={`${match.url}/coupons`}
+              render={(props) => <Coupons {...props} />}
             />
             <Redirect to="/error" />
           </Switch>

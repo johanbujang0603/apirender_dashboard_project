@@ -15,6 +15,7 @@ const Payment = ({ intl, match, history }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [delivery, setDelivery] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [couponCode, setCouponCode] = useState('');
   const [deliveryAddr, setDeliveryAddr] = useState({
     streetName: null,
     streetNumber: null,
@@ -27,6 +28,10 @@ const Payment = ({ intl, match, history }) => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const updateCouponCode = (val) => {
+    setCouponCode(val);
+  }
 
   const handleUpdateService = (service) => {
     axios
@@ -95,6 +100,8 @@ const Payment = ({ intl, match, history }) => {
             handleUpdateService={handleUpdateService}
             setDeliveryOption={setDeliveryOption}
             changeDeliveryAddr={updateDeliveryAddr}
+            updateCoupon={updateCouponCode}
+            couponCode={couponCode}
           />
         </Colxx>
         <Colxx sm="12" md="4" className="mb-4">
@@ -105,6 +112,7 @@ const Payment = ({ intl, match, history }) => {
             delivery={delivery}
             deliveryAddr={deliveryAddr}
             history={history}
+            couponCode={couponCode}
             isPrintingService={project.category === "PRINTING_SERVICES" ? true : false}
           />
           <PaypalPaymentForm

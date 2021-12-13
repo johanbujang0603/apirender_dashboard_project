@@ -15,7 +15,9 @@ router.post("/charge", async (req, res) => {
     const userEmail = body.userEmail;
     const deliveryOption = body.deliveryOption;
     const deliveryAddress = body.deliveryAddress;
+    const couponCode = body.couponCode;
     const projectObj =  await Project.findById(projectID);
+    const coupon = await Coupon.findOne({ code: couponCode });
 
     // get total amount of this project
     let totalAmount = await Service.aggregate([
@@ -32,6 +34,11 @@ router.post("/charge", async (req, res) => {
         },
     ]);
     totalAmount = totalAmount[0].total;
+
+    if (coupon) {
+        totalAmount = totalAmount * (100 - parseInt(coupon.value)) / 100;
+        console.log(totalAmount);
+    }
 
     let newOrders = [];
     services.forEach((service) => {

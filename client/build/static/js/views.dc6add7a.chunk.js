@@ -1,0 +1,2 @@
+(this["webpackJsonpapirender-dashboard"]=this["webpackJsonpapirender-dashboard"]||[]).push([[28],{407:function(a,e,r){"use strict";r.r(e);var p=r(3),s=r.n(p),t=r(89);e.default=()=>s.a.createElement(t.a,{to:"/app"})}}]);
+//# sourceMappingURL=views.dc6add7a.chunk.js.map

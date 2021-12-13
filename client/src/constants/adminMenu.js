@@ -35,5 +35,11 @@ const data = [
     label: 'menu.orders',
     to: '/admin/orders',
   },
+  {
+    id: 'coupons',
+    icon: 'simple-icon-docs',
+    label: 'menu.coupons',
+    to: '/admin/coupons',
+  },
 ];
 export default data;

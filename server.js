@@ -34,6 +34,7 @@ const backup = require("./routes/api/backup");
 const dashboard = require("./routes/api/dashboard");
 const actions = require("./routes/api/actions");
 const passwordReset = require("./routes/api/passwordReset");
+const couponRoutes = require("./routes/api/coupon");
 
 const app = express();
 
@@ -71,6 +72,7 @@ app.use("/api/backup", backup);
 app.use("/api/dashboard", dashboard);
 app.use("/api/actions", actions);
 app.use("/api/password-reset", passwordReset);
+app.use("/api/coupon", couponRoutes)
 
 const port = process.env.PORT || 5000;
 

@@ -35,7 +35,7 @@ const deliveryOptions = [
     currency: "AUD",
   },
 ];
-const OrderSummary = ({ setDeliveryOption, services, project, handleUpdateService, changeDeliveryAddr }) => {
+const OrderSummary = ({ setDeliveryOption, services, project, handleUpdateService, changeDeliveryAddr, couponCode, updateCoupon }) => {
   const [orders, setOrders] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [deliveryOption, updateDeliveryOption] = useState(null);
@@ -209,7 +209,7 @@ const OrderSummary = ({ setDeliveryOption, services, project, handleUpdateServic
           </div>
           <FormGroup>
             <Label className="text-primary font-weight-bolder">Coupon</Label>
-            <Input type="text" name="coupon" placeholder="Enter coupon" />
+            <Input type="text" name="coupon" placeholder="Enter coupon" value={couponCode} onChange={(e) => updateCoupon(e.target.value)} />
           </FormGroup>
           {
             project.category === "PRINTING_SERVICES" && (

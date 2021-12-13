@@ -50,6 +50,7 @@ module.exports = {
   "menu.contact": "Contact",
   "menu.privacy": "Privacy Policy",
   "menu.terms": "Terms and Conditions",
+  "menu.coupons": "Coupons",
 
   /*  */
   "projects.all": "All Projects",

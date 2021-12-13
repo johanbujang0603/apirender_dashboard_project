@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/index.js"],"names":["Main","to"],"mappings":"mIAAA,mCAOeA,UAJF,IACJ,kBAAC,IAAD,CAAUC,GAAG","file":"static/js/views.dc6add7a.chunk.js","sourcesContent":["import React from 'react';\r\nimport { Redirect } from 'react-router-dom';\r\n\r\nconst Main = () => {\r\n  return <Redirect to=\"/app\" />;\r\n};\r\n\r\nexport default Main;\r\n"],"sourceRoot":""}

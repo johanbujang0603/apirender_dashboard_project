@@ -121,6 +121,7 @@ const StripePaymentForm = ({
   delivery,
   isPrintingService,
   deliveryAddr,
+  couponCode,
   services
 }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -139,6 +140,7 @@ const StripePaymentForm = ({
       userEmail: JSON.parse(localStorage.getItem("current_user")).email,
       deliveryOption: delivery,
       deliveryAddress: deliveryAddr,
+      couponCode,
       services: services
     };
     
