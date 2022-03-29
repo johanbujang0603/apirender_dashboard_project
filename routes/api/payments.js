@@ -123,6 +123,9 @@ router.post("/charge", async (req, res) => {
                                 {
                                     email: userEmail,
                                 },
+                                {
+                                    email: "orders@propertyrender.com",
+                                },
                             ],
                             dynamic_template_data: {
                                 "orderNumber": projectObj.unique_id,

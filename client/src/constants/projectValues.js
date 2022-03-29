@@ -2,30 +2,30 @@
 Type Values:
 */
 export const projectCategories = [
-  {
-    id: 1,
-    desc: "Photo Retouching Services",
-    value: "PHOTO_RETOUCHING",
-    img: "/assets/img/category/photo_retouching.png",
-  },
-  {
-    id: 2,
-    desc: "Listing Enhancement",
-    value: "REAL_ESTATE_MARKETING",
-    img: "/assets/img/category/real_estate.png",
-  },
+  // {
+  //   id: 1,
+  //   desc: "Photo Retouching Services",
+  //   value: "PHOTO_RETOUCHING",
+  //   img: "/assets/img/category/photo_retouching.png",
+  // },
+  // {
+  //   id: 2,
+  //   desc: "Listing Enhancement",
+  //   value: "REAL_ESTATE_MARKETING",
+  //   img: "/assets/img/category/real_estate.png",
+  // },
   {
     id: 3,
     desc: "3D Renders",
     value: "PROPERTY_DEVELOPMENT",
     img: "/assets/img/category/property_development.png",
   },
-  {
-    id: 4,
-    desc: "Virtual Renovation Services",
-    value: "VIRTUAL_RENOVATION",
-    img: "/assets/img/category/virtual_renovation_service.png",
-  },
+  // {
+  //   id: 4,
+  //   desc: "Virtual Renovation Services",
+  //   value: "VIRTUAL_RENOVATION",
+  //   img: "/assets/img/category/virtual_renovation_service.png",
+  // },
   {
     id: 5,
     desc: "Project Marketing",
