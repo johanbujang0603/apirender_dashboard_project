@@ -12,8 +12,7 @@ router.post("/get-latest", async (req, res) => {
     .exec(async (err, actions) => {
         let results = [];
         for (let i = 0; i < actions.length; i ++) {
-            let title = "";
-            let link = "";
+            let title = "", link = "";
             if (actions[i].action_model === "CHAT") {
                 const service = await Service.findOne({ _id: actions[i].model_id });
                 if (actions[i].action === "RECEIVED_MESSAGES_FROM_ADMIN") {
