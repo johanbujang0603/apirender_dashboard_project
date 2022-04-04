@@ -87,6 +87,7 @@ router.post("/save", async (req, res) => {
       const userObj = await User.findOne({ _id: projectObj.user_id });
 
       sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
       const msg = {
         from: process.env.VERIFIED_SENDER_EMAIL,
         personalizations: [
@@ -97,6 +98,7 @@ router.post("/save", async (req, res) => {
               },
             ],
             dynamic_template_data: {
+                "order_number": projectObj.unique_id,
             },
           },
         ],

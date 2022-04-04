@@ -10,6 +10,7 @@ import {
   FormGroup,
   Label,
   CustomInput,
+  Button
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import IntlMessages from "../../helpers/IntlMessages";
@@ -61,6 +62,10 @@ const OrderSummary = ({ setDeliveryOption, services, project, handleUpdateServic
     setTotalPrice(orderTotal);
     setOrders(newOrders);
   }, [services, project]);
+
+  const onApplyCoupon = (e) => {
+    console.log("xxxx");
+  }
 
   const handleRemoveOrder = (order) => {
     let service = order.service;
@@ -210,6 +215,9 @@ const OrderSummary = ({ setDeliveryOption, services, project, handleUpdateServic
           <FormGroup>
             <Label className="text-primary font-weight-bolder">Coupon</Label>
             <Input type="text" name="coupon" placeholder="Enter coupon" value={couponCode} onChange={(e) => updateCoupon(e.target.value)} />
+            <div class="text-right mt-2">
+              <Button color="primary" onClick={onApplyCoupon}>Apply Coupon</Button>
+            </div>
           </FormGroup>
           {
             project.category === "PRINTING_SERVICES" && (
